@@ -1,0 +1,12 @@
+.logo {
+    display: flex;
+    width: 5rem;
+    margin-top: 0.5rem;
+
+}
+
+.menu {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+}
