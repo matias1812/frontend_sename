@@ -1,9 +1,19 @@
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import '../views/home.css'
 
 function Home(){
     return (
+      <>
         <div className="boar">
+        <NavLink to="/joblist" className="text-base font-medium text-gray-500 dark:text-white hover:text-gray-900">
+    Joblist
+  </NavLink>
+  <br/>
+  <NavLink to="/login" className="text-base font-medium text-gray-500 dark:text-white hover:text-gray-900">
+    Login
+  </NavLink>
             <div className="home">
                 <p className='parrafo'>Reinsercion Juvenil</p>
                 <h2 >Postula por un mejor mañana registrate <br/> y aca las empresas te contactan</h2>
@@ -11,6 +21,7 @@ function Home(){
                 <Button className='boton' variant="outline-secondary">Registrate aqui</Button>
             </div>
         </div>
+        </>
     )
     }
     export default Home;
