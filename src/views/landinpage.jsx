@@ -1,12 +1,12 @@
 import Navbar from "../components/navbar";
-import Home from "./home";
+import Body from "../components/body";
 import Footer from "../components/footer";
 
 function LandinPage(){
     return (
         <>
             <Navbar /> 
-            <Home />
+            <Body />
             <Footer />
         </>
     )
