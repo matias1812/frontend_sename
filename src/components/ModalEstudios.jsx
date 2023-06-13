@@ -11,24 +11,24 @@ export default function ModalEstudios() {
     }
   return (
     <div>
-        <button onClick={openModal} class="btn btn-outline-primary">abrir</button>
+        <button onClick={openModal} className="btn btn-outline-primary">abrir</button>
         <ReactModal isOpen = {isOpen} onRequestClose={closeModal}>
-        <div class="row">
-                <div class="col-md-4">
-                <label for="inputEmail4" class="form-label">Fecha</label>
-                <input type="email" class="form-control" id="inputEmail4"/>
+        <div className="row">
+                <div className="col-md-4">
+                <label htmlFor="inputEmail4" className="form-label">Fecha</label>
+                <input type="date" className="form-control" id="inputEmail4"/>
                 </div>
-                <div class="col-4">
-                <label for="inputAddress" class="form-label">Institucion</label>
-                <input type="text" class="form-control" id="inputAddress" />
+                <div className="col-4">
+                <label htmlFor="inputAddress" className="form-label">Institucion</label>
+                <input type="text" className="form-control" id="inputAddress" />
                 </div>
-                <div class="col-4">
-                <label for="inputAddress2" class="form-label">Carrera</label>
-                <input type="text" class="form-control" id="inputAddress2"/>
+                <div className="col-4">
+                <label htmlFor="inputAddress2" className="form-label">Carrera</label>
+                <input type="text" className="form-control" id="inputAddress2"/>
                 </div>
             </div> 
-            <button onClick={closeModal} class="btn btn-outline-primary"> cerrar </button>
-            <button type="button" class="btn btn-outline-primary">Agregar</button>
+            <button onClick={closeModal} className="btn btn-outline-primary"> cerrar </button>
+            <button type="button" className="btn btn-outline-primary">Agregar</button>
 
             
         </ReactModal>

@@ -9,31 +9,44 @@ export default function ModalExperiencias() {
     const closeModal = () => {
         setIsOpen(false);
     }
+    const [tableData, setTableData] = useState([
+        {fecha:'15-03-2004', empresa:'chanta', cargo:'recoge-papeles', experiencia:'ir al baño'}
+
+    ])
+    const [newItem, setNewItem] = useState({fecha:'', empresa:'', cargo:'', experiencia:''})
+    function handleAddItem(event){
+        event.preventDefault();
+        setTableData([...tableData, newItem])
+        setNewItem({fecha:'', empresa:'', cargo:'', experiencia:''})
+
+    }
   return (
     <div>
-        <button onClick={openModal} class="btn btn-outline-primary">abrir</button>
-        <ReactModal isOpen = {isOpen} onRequestClose={closeModal}>
-           <div class="row">
-                <div class="col-md-4">
-                <label for="inputEmail4" class="form-label">Fecha</label>
-                <input type="email" class="form-control" id="inputEmail4"/>
+        <button onClick={openModal} className="btn btn-outline-primary">abrir</button>
+        <ReactModal isOpen = {isOpen} onRequestClose={closeModal} ariaHideApp={false}>
+           <form onSubmit={handleAddItem}> 
+           <div className="row">
+                <div className="col-md-4">
+                <label htmlFor="inputEmail4" className="form-label">Fecha</label>
+                <input type="date" className="form-control" id="inputEmail4"/>
                 </div>
-                <div class="col-4">
-                <label for="inputAddress" class="form-label">Empresa</label>
-                <input type="text" class="form-control" id="inputAddress" />
+                <div className="col-4">
+                <label htmlFor="inputAddress" className="form-label">Empresa</label>
+                <input type="text" className="form-control" id="inputAddress" />
                 </div>
-                <div class="col-4">
-                <label for="inputAddress2" class="form-label">Cargo</label>
-                <input type="text" class="form-control" id="inputAddress2"/>
+                <div className="col-4">
+                <label htmlFor="inputAddress2" className="form-label">Cargo</label>
+                <input type="text" className="form-control" id="inputAddress2"/>
                 </div>
-                <div class="col-md-12">
-                <label for="inputCity" class="form-label">Experiencia</label>
-                <textarea type="text" class="form-control" id="inputCity"></textarea>
+                <div className="col-md-12">
+                <label htmlFor="inputCity" className="form-label">Experiencia</label>
+                <textarea type="text" className="form-control" id="inputCity"></textarea>
                 </div>
+               
             </div> 
-            <button onClick={closeModal} class="btn btn-outline-primary"> cerrar </button>
-            <button type="button" class="btn btn-outline-primary">Agregar</button>
-
+            <button onClick={closeModal} className="btn btn-outline-primary"> cerrar </button>
+            <button type="submit" className="btn btn-outline-primary">Agregar</button>
+            </form>
         </ReactModal>
         
     </div>

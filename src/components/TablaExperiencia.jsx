@@ -5,7 +5,7 @@ export default function TablaExperiencia() {
       <div className='tabla'>
         <ModalExperiencias></ModalExperiencias>
         <h3>experiencias laborales</h3>
-          <table class="table">
+          <table className="table">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -15,7 +15,7 @@ export default function TablaExperiencia() {
                   <th scope="col">Experiencia Laboral</th>
                 </tr>
               </thead>
-              <tbody class="table-group-divider">
+              <tbody className="table-group-divider">
                 <tr>
                   <th scope="row">1</th>
                   <td>Mark</td>

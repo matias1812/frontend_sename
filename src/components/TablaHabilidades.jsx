@@ -5,7 +5,7 @@ export default function TablaHabilidades() {
       <div className='tabla'>
         <ModalHabilidades></ModalHabilidades>
           <h3>habilidades</h3>
-          <table class="table">
+          <table className="table">
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -14,7 +14,7 @@ export default function TablaHabilidades() {
 
                 </tr>
               </thead>
-              <tbody class="table-group-divider">
+              <tbody className="table-group-divider">
                 <tr>
                   <th scope="row">1</th>
                   <td>Mark</td>
