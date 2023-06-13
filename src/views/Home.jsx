@@ -13,6 +13,11 @@ export default function Home() {
   <NavLink to="/login" className="text-base font-medium text-gray-500 dark:text-white hover:text-gray-900">
     Login
   </NavLink>
+  <br/>
+  <NavLink to="/mi-perfil" className="text-base font-medium text-gray-500 dark:text-white hover:text-gray-900">
+    Mi Perfil
+  </NavLink>
+
   </>
   )
 }
