@@ -1,0 +1,24 @@
+.app-container{
+    display: flex;
+    margin: 2rem;
+}
+
+.column {
+    flex-basis: 60rem;
+    margin: 1rem;
+  }
+
+.column1 {
+    flex-basis: 25rem;
+    margin: 1rem;
+
+  }
+
+.postular{
+    display: flex;
+    flex-direction: column;
+}
+
+#titulo{
+    font-size: 2rem;   
+}

@@ -13,15 +13,17 @@ function Navbar() {
     activeKey="/home"
     onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
     >
+    <div className='item'>      
       <Nav.Item>
         <Nav.Link href="/signup">Sign up</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link href="/loading">Loading</Nav.Link>
+        <Nav.Link href="/loading">Login</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link eventKey="link-2">Mas informacion</Nav.Link>
       </Nav.Item>
+    </div>  
     </Nav>
   </div>
 </div>
