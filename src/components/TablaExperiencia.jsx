@@ -3,26 +3,18 @@ import ReactModal from 'react-modal'
 
 export default function TablaExperiencia() {
   const [modalOpen, setModalOpen] = useState(false)
-
-  const [modalInformacion, setModalInformacion] = useState({fecha:'', empresa:'', cargo:'', experiencia:''})
-
   const [tableData, setTableData] = useState([
     {fecha:'15-03-2004', empresa:'chanta', cargo:'recoge-papeles', experiencia:'ir al baño'}
   ])
     
     function handleAddItem(event){
         event.preventDefault();
-        //const response = {...modalInformacion}
-        //const {fecha} = event.target
         const form = event.target
         const formData = new FormData(form) 
         const formJson = Object.fromEntries(formData.entries())
         console.log(formJson)
-        setTableData([...tableData, modalInformacion])
-        setModalInformacion(formJson)
-
+        setTableData([...tableData, formJson])
         setModalOpen(false);
-
     }
 
   return (
