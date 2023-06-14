@@ -3,32 +3,35 @@ import ReactModal from 'react-modal'
 
 export default function ModalExperiencias() {
     const [isOpen, setIsOpen] = useState(false);
+
     const openModal = () => {
         setIsOpen(true);
     } 
+
     const closeModal = () => {
         setIsOpen(false);
     }
+
     const [tableData, setTableData] = useState([
         {fecha:'15-03-2004', empresa:'chanta', cargo:'recoge-papeles', experiencia:'ir al baño'}
-
     ])
+
     const [newItem, setNewItem] = useState({fecha:'', empresa:'', cargo:'', experiencia:''})
     function handleAddItem(event){
         event.preventDefault();
         setTableData([...tableData, newItem])
         setNewItem({fecha:'', empresa:'', cargo:'', experiencia:''})
-
     }
+
   return (
     <div>
-        <button onClick={openModal} className="btn btn-outline-primary">abrir</button>
+        <button onClick={openModal} className="btn btn-outline-primary">Abrir</button>
         <ReactModal isOpen = {isOpen} onRequestClose={closeModal} ariaHideApp={false}>
            <form onSubmit={handleAddItem}> 
            <div className="row">
                 <div className="col-md-4">
-                <label htmlFor="inputEmail4" className="form-label">Fecha</label>
-                <input type="date" className="form-control" id="inputEmail4"/>
+                <label htmlFor="fecha" className="form-label">Fecha</label>
+                <input type="date" name='fecha' className="form-control" id="fecha"/>
                 </div>
                 <div className="col-4">
                 <label htmlFor="inputAddress" className="form-label">Empresa</label>
