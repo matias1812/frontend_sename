@@ -19,7 +19,7 @@ export default function TablaExperiencia() {
 
   return (
       <div className='tabla'>
-        <button onClick={() => setModalOpen(true)}>agregarExperiencia</button>
+        <button onClick={() => setModalOpen(true)} className="botonAgregar btn btn-outline-primary">AgregarExperiencia</button>
         <h3>experiencias laborales</h3>
           <table className="table">
               <thead>
