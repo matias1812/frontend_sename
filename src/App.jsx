@@ -6,20 +6,32 @@ import "./App.css";
 import { PrivateRoutes } from "./components/PrivateRoutes";
 import Home from "./views/Home";
 import JobList from "./views/JobList";
-import Login from "./views/Login";
-import SignUp from "./views/Signup";
+import Login from "../src/components/Login";
+import Signup from "./components/signup";
 import NotFound from "./views/NotFound";
-
+import UsuarioEmpresas from "./views/usuarioEmpresa";
+import Bienvenida from "./views/bienvenida"
+import DetalleAviso from "./views/DetalleAviso";
+import Landinpage from "./views/landinpage"
 import AuthProvider from "./providers/AuthProvider";
+import Documentos from "./components/documentos";
 
 function App() {
   return (
     <>
       <AuthProvider>
         <Routes>
+        <Route path="/landinpage" element={<Landinpage />} /> 
+          <Route path="/detalles" element={<DetalleAviso />} /> 
+          <Route path="/bienvenida" element={<Bienvenida />} />
+          <Route path="/documentos" element={<Documentos />} />
+
           <Route path="/" element={<Home />} />
+          <Route path="/empresa" element={<UsuarioEmpresas />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route element={<PrivateRoutes />}>
+            
             <Route exact path="/joblist" element={<JobList />} />
           </Route>
         </Routes>
