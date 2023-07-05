@@ -1,19 +1,23 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { useNavigate } from "react-router-dom";
 import './Aviso.css'
 
-function Aviso(props) {
+
+function AvisoPostulante() {
+
+
   return (
     <>
      <div className='container' >
         <Card className='card m-5'>
          <Card.Body>
-         <Card.Title>quieres gana $1.000.000 por hora</Card.Title>
+         <Card.Title>Maestro Soldador</Card.Title>
           <Card.Text>
-            este es el empleo q siempre as soñado postula ya t estamos esperando
+            5 años en experiencia
           </Card.Text>
           <div className='postula'>
-          <Button variant="outline-primary" href='/detalles'>Postular</Button>
+          <Button variant="outline-primary" href='/'>Contactar</Button>
           </div>
          </Card.Body>
         </Card>
@@ -22,4 +26,4 @@ function Aviso(props) {
   );
 }
 
-export default Aviso
+export default AvisoPostulante

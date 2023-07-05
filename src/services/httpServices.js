@@ -1,4 +1,4 @@
-import { api_url } from '../config'
+import { api_url } from '../../config'
 
 async function Http({ method = 'GET', url = '/boards', token = null, body = null, content_type = true }) {
   if (!url.startsWith('/')) throw new Error('URL must start with /')

@@ -2,14 +2,15 @@ import { Card } from "react-bootstrap";
 import { useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import EmpresasAviso from "./empresaAvisos";
-import CrearAnuncio from "./crearAnuncios";
-import Postulante from "./postulantes";
+import TablaEstudios from '../components/TablaEstudio'
+import TablaExperiencias from '../components/TablaExperiencia'
+import TablaHabilidades from '../components/TablaHabilidades'
+import CrearAnuncio from "../components/crearAnuncios";
 
-import "./perfilEmpresas.css";
+import "./perfilUsuario.css";
 import mario from '/mario.png'
 
-function PerfilEmpresas() {
+function perfilUsuario() {
   const [key, setKey] = useState("home");
 
   return (
@@ -21,14 +22,15 @@ function PerfilEmpresas() {
               <div className="perfil">
                 <img className="profile-image" src={mario} alt="Profile" />
               </div>
-              <h3 className="campo">sename</h3>
+              <h3 className="campo">Matias</h3>
               <h5>datos personales</h5>
               <hr className="solid" />
+              <p>nombres: Matias Ignacio</p>
+              <p>apellidos: torres torres</p>
               <p>Nacionalidad: chilena</p>
-              <p>RUT: 45.345.675-8</p>
+              <p>RUT: 21.195.909-6</p>
               <p>
-                Razon Social: Servicio nacional de protección especializada a la
-                niñez y adolescencia.
+                
               </p>
             </Card.Body>
           </Card>
@@ -50,14 +52,17 @@ function PerfilEmpresas() {
             justify
             variant="tabs"
           >
-            <Tab eventKey="home" title="postulantes">
-                <Postulante/>
+            <Tab eventKey="home" title="curriculum">
+                <TablaExperiencias></TablaExperiencias> 
+                <TablaEstudios></TablaEstudios>
+                <TablaHabilidades></TablaHabilidades>   
             </Tab>
             <Tab eventKey="profile" title="crear anuncio">
-                <CrearAnuncio/>
+            <CrearAnuncio/>
             </Tab>
-            <Tab eventKey="contact" title="mis anuncios">
-                <EmpresasAviso/>
+            <Tab eventKey="anuncios" title="mis anuncios">
+            </Tab>
+            <Tab eventKey="empleadores" title="empleadores">
             </Tab>
           </Tabs>
         </div>
@@ -65,4 +70,4 @@ function PerfilEmpresas() {
     </>
   );
 }
-export default PerfilEmpresas;
+export default perfilUsuario;

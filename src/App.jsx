@@ -15,6 +15,7 @@ import DetalleAviso from "./views/DetalleAviso";
 import Landinpage from "./views/landinpage"
 import AuthProvider from "./providers/AuthProvider";
 import Documentos from "./components/documentos";
+import PerfilUsuario from "./views/miPerfil";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route path="/detalles" element={<DetalleAviso />} /> 
           <Route path="/bienvenida" element={<Bienvenida />} />
           <Route path="/documentos" element={<Documentos />} />
-
+          <Route path="/perfil" element={<PerfilUsuario />} />
           <Route path="/" element={<Home />} />
           <Route path="/empresa" element={<UsuarioEmpresas />} />
           <Route path="/login" element={<Login />} />

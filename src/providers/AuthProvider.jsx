@@ -3,7 +3,7 @@ import { useState, useMemo } from 'react'
 // import getCurrentUser from '../helpers/user'
 import isEmpty from '../helpers/isEmpty'
 import AuthContext from '../context/AuthContext'
-import { user_local_storage_key } from '../config'
+import { user_local_storage_key } from '../../config'
 
 const AuthProvider = ({ children }) => {
   

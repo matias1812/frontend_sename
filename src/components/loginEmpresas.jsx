@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { Button, Modal, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Button, Modal, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import './loginEmpresas.css'
+import Rut from "rut.js";
+
+import "./loginEmpresas.css";
 
 function LoginEmpresas() {
-  const { get } = useFetch();
+  const { post } = useFetch();
   const [showModal, setShowModal] = useState(false);
-  const [id, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+  const [rut, setRut] = useState("");
+  const [contrasena, setContrasena] = useState("");
+  const [errors, setErrors] = useState({});
+  const [showButton, setShowButton] = useState(true);
   const navigate = useNavigate();
 
   const handleShowModal = () => {
@@ -20,69 +23,106 @@ function LoginEmpresas() {
     setShowModal(false);
   };
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const handleRut = (event) => {
+    setRut(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
+  const handleConntrasena = (event) => {
+    setContrasena(event.target.value);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const validationErrors = {};
+
     const credentials = {
-      rut: id,
-      password: password
+      rut: rut,
+      contrasena: contrasena,
+      usuario: usuario,
     };
 
+    if (!rut || !Rut.validate(rut)) {
+      validationErrors.rut = "Debe ingresar un RUT válido";
+    }
+
+    if (!contrasena || !contrasena.length > 6) {
+      validationErrors.contrasena =
+        "la contraseña debe tener minimo una mayuscula, 4 digitos y 6 caracteres ";
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     try {
-      const response = await get({ url: "/auth/login", body: credentials });
+      const { data } = await post({
+        url: "/usuarioEmpresa",
+        body: credentials,
+      });
+      if (data) return navigate("/empresa");
 
       if (response.status === 200) {
-        // Restablecer el estado del formulario
-        setEmail('');
-        setPassword('');
+        setRut("");
+        setPassword("");
         setShowModal(false);
+        setShowButton(false);
 
-        // Navegar a la página de destino después de iniciar sesión exitosamente
-        navigate("/bienvenida");
+        navigate("/home");
       } else {
-        // Manejar error de autenticación
-        console.error('Error de autenticación:', response.error);
+        console.error("Error de autenticación:", response.error);
       }
     } catch (error) {
-      // Manejar error de red u otro error
-      console.error('Error:', error);
+      console.error("Error:", errors);
     }
   };
 
   return (
     <>
       <div>
-        <Button variant="outline-secondary" className='border -0' onClick={handleShowModal}>
+        <Button
+          variant="outline-primary"
+          className="empresas"
+          onClick={handleShowModal}
+        >
           empresas
         </Button>
 
-        <Modal show={showModal} onHide={handleCloseModal} className='modalogin'>
+        <Modal show={showModal} onHide={handleCloseModal} className="modalogin">
           <Modal.Header closeButton>
             <Modal.Title>Iniciar sesión</Modal.Title>
           </Modal.Header>
-          <Modal.Body className='iniciar'>
+          <Modal.Body className="iniciar">
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formEmail">
-                <Form.Label>RUTl</Form.Label>
-                <Form.Control type="rut" placeholder="RUT" value={id} onChange={handleEmailChange} />
+                <Form.Label>RUT</Form.Label>
+                <Form.Control
+                  type="rut"
+                  placeholder="RUT"
+                  value={rut}
+                  onChange={handleRut}
+                />
               </Form.Group>
 
               <Form.Group controlId="formPassword">
                 <Form.Label>Contraseña</Form.Label>
-                <Form.Control type="password" placeholder="Ingresa tu contraseña" value={password} onChange={handlePasswordChange} />
+                <Form.Control
+                  type="password"
+                  placeholder="Ingresa tu contraseña"
+                  value={contrasena}
+                  onChange={handleConntrasena}
+                />
               </Form.Group>
-
-              <Button variant="primary" type="submit">
-                Iniciar sesión
-              </Button>
+              {showButton && (
+                <Button
+                  variant="primary"
+                  onClick={handleShowModal}
+                  type="submit"
+                >
+                  Iniciar sesión
+                </Button>
+              )}
             </Form>
           </Modal.Body>
         </Modal>

@@ -1,0 +1,35 @@
+.campo{
+    text-align: center;
+}
+
+.container-flex{
+    display: flex;
+    margin: 2rem;
+}
+.column2 {
+    flex-basis: 20rem;
+    margin: 1rem;
+  }
+
+.column3 {
+    flex-basis: 50rem;
+    margin: 1rem;
+
+  }
+
+.contacto{
+    margin-top: 2rem;
+}
+
+.profile-image {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: 3px solid blue;
+    padding: 5px;
+}
+
+.perfil{
+    display: flex;
+    justify-content: center;
+}
