@@ -11,4 +11,13 @@
     
 }
 
+.profile-image-nav{
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: 3px solid blue;
+    padding: 5px;
+}
+
+
 

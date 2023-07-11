@@ -1,8 +1,10 @@
 import Nav from 'react-bootstrap/Nav';
+import logo from '/logo.png'
+import Login from './Login';
+import Signup from './signup';
+import LoginEmpresas from "./loginEmpresas";
 
 import './navbar.css'
-
-import logo from '/logo.png'
 
 function Navbar() {
   return (    
@@ -14,14 +16,17 @@ function Navbar() {
     onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
     >
     <div className='item'>      
-      <Nav.Item>
-        <Nav.Link href="/signup">Sign up</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link href="/loading">Login</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
         <Nav.Link eventKey="link-2">Mas informacion</Nav.Link>
+      <Nav.Item>
+        <Signup />
+      </Nav.Item>
+      <Nav.Item>
+        <LoginEmpresas />
+      </Nav.Item>
+      <Nav.Item>
+        <Login/>
+      </Nav.Item>
+         <Nav.Item>
       </Nav.Item>
     </div>  
     </Nav>

@@ -1,0 +1,21 @@
+.modalsignup {
+    margin-top: 0.5rem;
+}
+
+.botonsignup{
+    margin-right: 1rem;
+}
+
+.registrarce{
+    display: grid;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.invisible{
+    display: none;
+}
+
+.visible{
+    display: block;
+}
