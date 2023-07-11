@@ -1,0 +1,134 @@
+.container-flex{
+    display: flex;
+    margin: 2rem;
+    padding: 2rem;
+    justify-content: center;
+}
+.column4 {
+    flex-basis: 20rem;
+    margin: 1rem;
+  }
+
+.column6 {
+    flex-basis: 20rem;
+    margin: 1rem;
+}
+ 
+  
+.column5 {
+    flex-basis: 20rem;
+    margin: 1rem;
+    
+  }
+
+.fonasa *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fonasa-card{
+    margin-bottom: 2rem;
+}
+
+.afp1card{
+    padding-bottom: 1rem;
+}
+
+.afp1 *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.afphabitatcard{
+    margin-top: 2rem;
+
+}
+
+.afphabitatcard *{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.04rem;
+}
+
+.imghabitat{
+    display: flex;
+    width: 15rem;
+    justify-content: center;
+    margin-left: 1.5rem;
+}
+
+.card-img-2{
+    margin-top: 2.5rem;
+}
+
+
+
+.afp-capital *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.providacard{
+    margin-top: 2rem;
+
+}
+
+.providacard *{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.9rem;
+}
+
+.modelocard *{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.modelocard{
+    margin-top: 2rem;
+}
+
+.planvitalcard {
+    margin-top: 2rem;
+}
+
+.planvitalcard *{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.chileatiendecard{
+    margin-top: 2rem;
+
+}
+
+.chileatiendecard *{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.imgchileatiende{
+    margin-top: 0.98rem;
+}
+
+.mineduccard{
+    margin-top: 2rem;
+}
+
+.mineduccard *{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 1rem;
+}

@@ -1,0 +1,15 @@
+.anuncio-body{
+    background-color: white;
+    border-radius: 5px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.anuncio-body *{
+    margin-bottom: 1rem;
+}
+
+.anuncio-body input{
+    width: 50%;
+}
