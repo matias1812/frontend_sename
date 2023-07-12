@@ -39,7 +39,6 @@ function LoginEmpresas() {
     const credentials = {
       rut: rut,
       contrasena: contrasena,
-      usuario: usuario,
     };
 
     if (!rut || !Rut.validate(rut)) {

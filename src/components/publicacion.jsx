@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch";
 import AvisoPostulacion from "./cardPublicacion";
 
-import "./Aviso.css";
 
-function Aviso() {
+function Publicacion() {
   const { get } = useFetch();
   const [publicaciones, setPublicaciones] = useState([]);
   
@@ -16,13 +15,11 @@ function Aviso() {
     try {
         const { data } = await get({ url: "/publicaciones/all" });
        const formattedPublicaciones = formatPublicaciones(data);
-       console.log(formattedPublicaciones, 'loool')
        setPublicaciones(formattedPublicaciones);
     } catch (error) {
       console.error("Error:", error);
     }
   };
-  console.log(publicaciones, 'info')
   
   useEffect(() => {
     getPublicaciones();
@@ -43,4 +40,4 @@ function Aviso() {
   );
 }
 
-export default Aviso;
+export default Publicacion;

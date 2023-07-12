@@ -5,8 +5,7 @@ import Pagination from "react-bootstrap/Pagination";
 import Footer from "../components/footer";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import AvisoPostulante from "../components/AvisoPostulante";
-
+import Aviso from "../components/aviso";
 import './Home.css'
 
 function Home() {
@@ -15,14 +14,14 @@ function Home() {
     
       <NavbarHome />
       <Tabs
-      defaultActiveKey="profile"
+      defaultActiveKey="contact"
       id="justify-tab-example"
       className="mb-2"
       justify
     >
     <Tab eventKey="longer-tab" title="Marketplace">
       <Encabezado />
-      <AvisoPostulante/>
+      <Aviso/>
       </Tab>
       <Tab eventKey="contact" title="Ofertas Laborales" >
       <Encabezado />

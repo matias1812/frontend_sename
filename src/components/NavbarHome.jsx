@@ -9,7 +9,9 @@ import React, { useState } from 'react';
 
 import "./NavbarHome.css";
 
-function NavbarHome({ userType }) {
+
+function NavbarHome() {
+
       
       return (
         <Navbar bg="light" expand="lg">

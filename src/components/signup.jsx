@@ -55,13 +55,13 @@ function Signup() {
     setPassword(event.target.value);
   };
 
-  const handleRazonSocialChange = (event) => {
-    setRazonSocial(event.target.value);
-  };
+  // const handleRazonSocialChange = (event) => {
+  //   setRazonSocial(event.target.value);
+  // };
 
-  const handleRutEmpresaChange = (event) => {
-    setRutEmpresa(event.target.value);
-  };
+  // const handleRutEmpresaChange = (event) => {
+  //   setRutEmpresa(event.target.value);
+  // };
 
   const handleIsCheckChange = () => {
     if(!isCheck) {
@@ -83,12 +83,12 @@ function Signup() {
     const validationErrors = {};
 
     const credentials = {
-      nombre: nombre,
+      // nombre: nombre,
       correo: email,
-      rut: rut,
-      telefono: telefono,
+      // rut: rut,
+      // telefono: telefono,
       contrasena: password,
-      razonSocial: {razonSocial}
+      //razonSocial: {razonSocial}
     };
 
 
@@ -264,9 +264,9 @@ function Signup() {
               <Form.Label>Razon Social</Form.Label>
               <Form.Control
                 type="text"
-                value={razonSocial}
                 placeholder="RazonSocial"
-                onChange={handleRazonSocialChange}
+                // value={razonSocial}
+                // onChange={handleRazonSocialChange}
               />
                 {errors.razonSocial && (
                   <Alert variant="danger">{errors.razonSocial}</Alert>
@@ -275,8 +275,8 @@ function Signup() {
                 <Form.Control
                   type="text"
                   placeholder="Ingresa tu RUT Empresa"
-                  value={rutEmpresa}
-                  onChange={handleRutEmpresaChange}
+                  // value={rutEmpresa}
+                  // onChange={handleRutEmpresaChange}
                 />
                 {errors.rut && <Alert variant="danger">{errors.rut}</Alert>}
               </div>
