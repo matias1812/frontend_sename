@@ -1,12 +1,12 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-import "./aviso.css";
+import "./publicacion.css"
 
 function AvisoPostulacion(props) {
   
 return (
-  <Card className="card m-5">
+  <Card border="primary" className="card m-5">
                 <Card.Body>
                   <Card.Title className="titulo">{props.publicacion.titulo}</Card.Title>
                   <Card.Text className="sueldo">${props.publicacion.rangosalarial}</Card.Text>

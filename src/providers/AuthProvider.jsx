@@ -17,17 +17,17 @@ const AuthProvider = ({ children }) => {
     return setUser(user)
   }
 
-  const logoutHandler = () => {
-    localStorage.removeItem(user_local_storage_key)
-    return setUser(null)
-  }
+  // const logoutHandler = () => {
+  //   localStorage.removeItem(user_local_storage_key)
+  //   return setUser(null)
+  // }
 
   const auth_value = useMemo(() => ({
     user: current_user?.user || null,
     token: current_user?.accessToken,
     is_authenticated: !!current_user?.user?.id,
     setUser: setUserHandler,
-    logout: logoutHandler
+    // logout: logoutHandler
   }), [current_user])
 
   return <AuthContext.Provider value={auth_value}>

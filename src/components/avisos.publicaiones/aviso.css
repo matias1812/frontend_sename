@@ -1,0 +1,42 @@
+.buscador{
+    display: flex;
+    margin-left: 25rem;
+    margin-top: 10rem;
+    
+}
+
+.postula{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-right: 1rem;
+}
+
+.titulo1{
+    display: flex;
+    margin: 1rem;
+    font-size: 2.5em;
+    font-family: 'Belanosima', sans-serif;
+}
+
+.sueldo1{
+    display: flex;
+    margin-left: 1rem;
+    margin-top: -1rem;
+    font-size: 2rem;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.descripcion1{
+    margin-left: 1rem;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 1.5rem;
+    margin-top: -1rem;
+}
+
+.ubicacion1{
+    margin-top: -6.5rem;
+    margin-left: 54rem;
+    font-family: 'Noto Sans', sans-serif;
+
+}

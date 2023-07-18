@@ -1,6 +1,6 @@
 import Nav from "react-bootstrap/Nav";
 
-import Signup from "./signup";
+import Signup from "./login.signup/signup";
 
 import "./body.css";
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, Form, Alert } from "react-bootstrap";
-import useFetch from "../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import validator from "validator";
 import Rut from "rut.js";
 import { useNavigate } from "react-router-dom";
@@ -28,30 +28,37 @@ function Signup() {
   };
 
   const handleCloseModal = () => {
+
     setShowModal(false);
   };
 
   const handleNombreChange = (event) => {
+    
     setNombre(event.target.value);
   };
 
   const handleRutChange = (event) => {
+
     setRut(event.target.value);
   };
 
   const handleConfirmPasswordChange = (event) => {
+
     setConfirmPassword(event.target.value);
   };
 
   const handleTelefonoChange = (event) => {
+
     setTelefono(event.target.value);
   };
 
   const handleEmailChange = (event) => {
+
     setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
+
     setPassword(event.target.value);
   };
 
@@ -142,7 +149,7 @@ function Signup() {
         const { data } = await post({ url: "/auth/signup", body: credentials  });
         if (data) return navigate("/bienvenida");        
       }
-      if (response.status === 200) {
+      if (response.status === 201) {
         // Restablecer el estado del formulario
         setEmail("");
         setPassword("");

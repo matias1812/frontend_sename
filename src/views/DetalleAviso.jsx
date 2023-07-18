@@ -1,5 +1,5 @@
-import NavbarHome from "../components/NavbarHome";
-import Detalles from "../components/detalles";
+import NavbarHome from "../components/navs/NavbarHome";
+import Detalles from "../components/avisos.publicaiones/detalles";
 import Footer from "../components/footer";
 
 function DetalleAviso(){

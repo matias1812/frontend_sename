@@ -2,9 +2,7 @@ import { Card } from "react-bootstrap";
 import { useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import EmpresasAviso from "./empresaAvisos";
-import CrearAnuncio from "./crearAnuncios";
-import Postulante from "./postulantes";
+import CrearAviso from "../avisos.publicaiones/crearAviso";
 
 import "./perfilEmpresas.css";
 import mario from '/mario.png'
@@ -51,13 +49,13 @@ function PerfilEmpresas() {
             variant="tabs"
           >
             <Tab eventKey="home" title="postulantes">
-                <Postulante/>
+
             </Tab>
             <Tab eventKey="profile" title="crear anuncio">
-                <CrearAnuncio/>
+                <CrearAviso/>
             </Tab>
             <Tab eventKey="contact" title="mis anuncios">
-                <EmpresasAviso/>
+                
             </Tab>
           </Tabs>
         </div>

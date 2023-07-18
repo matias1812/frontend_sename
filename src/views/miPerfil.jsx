@@ -1,7 +1,7 @@
-import PerfilUsuario from '../components/perfilUsuario';'../'
+import PerfilUsuario from '../components/perfiles/perfilUsuario';
 import '../views/miPerfil.css'
 import Footer from "../components/footer";
-import NavbarHome from "../components/NavbarHome"
+import NavbarHome from "../components/navs/NavbarHome"
 
 function MiPerfil(){
     return (

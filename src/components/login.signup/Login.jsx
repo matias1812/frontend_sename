@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Button, Modal, Form, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 import validator from "validator";
 
+import eyes from "/eye.svg" 
 import "./Login.css";
 
 function Login() {
@@ -119,6 +120,7 @@ console.log(data);
                   value={password}
                   onChange={handlePasswordChange}
                 />
+                <img className="eye" src={eyes} alt="" />
                 {errors.password && (
                   <Alert variant="danger">{errors.password}</Alert>
                 )}

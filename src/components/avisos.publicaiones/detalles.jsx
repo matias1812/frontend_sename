@@ -2,52 +2,21 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './Detalles.css'
 import Form from 'react-bootstrap/Form';
-import Carousel from 'react-bootstrap/Carousel';
-import mario from '/mario.png'
 
-function Detalles() {
+function Detalles(props) {
+    
+
   return (
  <div className='app-container'>
     <div className='column'>
-        <Card style={{ width: '55rem' }}>
+        <Card border="primary" style={{ width: '55rem' }}>
             <Card.Header id='titulo'>TITULO</Card.Header>
-            <Carousel>
-        <Carousel.Item>
-         <img
-          className="d-block w-100"
-          src={mario}
-          alt="First slide"
-         />
-      </Carousel.Item>
-      <Carousel.Item>
-         <img
-          className="d-block w-100"
-          src={mario}
-          alt="Second slide"
-         />
-
-      </Carousel.Item>
-      <Carousel.Item>
-         <img
-          className="d-block w-100"
-          src={mario}
-          alt="Third slide"
-         />
-      </Carousel.Item>
-    </Carousel>
             <Card.Body>
                 <Card.Title>cargo</Card.Title>
                 <Card.Text>
                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequuntur suscipit, ut nam rem, cumque aspernatur libero alias optio non debitis hic accusamus, unde quas saepe accusantium quisquam! Quis, placeat exercitationem.lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod commodi, eaque perspiciatis distinctio similique enim labore dolore neque quis earum veritatis dicta accusamus nulla sed qui. Nihil veniam reprehenderit magnam?
                 </Card.Text>
                 <Card.Text>
-                    requisitos
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
                 </Card.Text>
                 <Card.Text>
                     

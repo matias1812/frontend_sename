@@ -1,5 +1,5 @@
-import PerfilEmpresas from "../components/perfilEmpresas";
-import NavbarHome from "../components/NavbarHome";
+import PerfilEmpresas from "../components/perfiles/perfilEmpresas";
+import NavbarHome from "../components/navs/NavbarHome";
 import Footer from "../components/footer";
 
 PerfilEmpresas

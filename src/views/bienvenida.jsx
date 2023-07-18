@@ -1,4 +1,4 @@
-import NavbarHome from "../components/NavbarHome";
+import NavbarHome from "../components/navs/NavbarHome";
 import BodyHome from "../components/bodyHome";
 
 function Bienvenida(){

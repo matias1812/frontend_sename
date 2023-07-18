@@ -12,7 +12,7 @@ import afpvital from "/afpvital.png"
 import chileatiende from "/chileatiende.png"
 import mineduc from "/mineduc.png"
 
-import NavbarHome from "./NavbarHome";
+import NavbarHome from "./navs/NavbarHome";
 import Footer from "./footer";
 
 function Documentos() {

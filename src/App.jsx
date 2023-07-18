@@ -6,8 +6,8 @@ import "./App.css";
 import { PrivateRoutes } from "./components/PrivateRoutes";
 import Home from "./views/Home";
 import JobList from "./views/JobList";
-import Login from "../src/components/Login";
-import Signup from "./components/signup";
+import Login from "./components/login.signup/Login"
+import Signup from "./components/login.signup/signup";
 import NotFound from "./views/NotFound";
 import UsuarioEmpresas from "./views/usuarioEmpresa";
 import Bienvenida from "./views/bienvenida"

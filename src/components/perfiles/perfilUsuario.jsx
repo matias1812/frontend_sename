@@ -1,34 +1,58 @@
 import { Card } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import TablaEstudios from '../components/TablaEstudio'
-import TablaExperiencias from '../components/TablaExperiencia'
-import TablaHabilidades from '../components/TablaHabilidades'
-import CrearAnuncio from "../components/crearAnuncios";
-
+import TablaEstudios from '../tablas/TablaEstudio'
+import TablaExperiencias from '../tablas/TablaExperiencia'
+import TablaHabilidades from '../tablas/TablaHabilidades'
+import CrearAnuncio from "../avisos.publicaiones/crearAviso";
+import useFetch from "../../hooks/useFetch";
+import Misaviso from "../avisos.publicaiones/misAvisos"
 import "./perfilUsuario.css";
-import mario from '/mario.png'
 
 function perfilUsuario() {
   const [key, setKey] = useState("home");
+  const { get } = useFetch();
+  const [postulante, setPostulante] = useState(null);
 
-  return (
+ useEffect(() => {
+  const userData = localStorage.getItem("user");
+  if (userData) {
+    const data = JSON.parse(userData);
+    const usuarioId = data.user.id;
+
+    const credentials = {
+      usuarioId: usuarioId,
+    };
+const fetchPostulanteData = async () => {
+      try {
+        const {data} = await get({ url: '/postulantes', body: credentials });
+        console.log(data, "postulante");
+        if (data.length > 0) {
+          setPostulante(data[0]);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchPostulanteData();
+    
+  }
+}, []);
+return (
     <>
       <div className="container-flex">
         <div className="column2">
           <Card>
             <Card.Body>
-              <div className="perfil">
-                <img className="profile-image" src={mario} alt="Profile" />
-              </div>
               <h3 className="campo">Matias</h3>
               <h5>datos personales</h5>
               <hr className="solid" />
-              <p>nombres: Matias Ignacio</p>
-              <p>apellidos: torres torres</p>
-              <p>Nacionalidad: chilena</p>
-              <p>RUT: 21.195.909-6</p>
+              <p>nombres: </p>
+              <p>apellidos: </p>
+              <p>Nacionalidad: </p>
+              <p>RUT: </p>
               <p>
                 
               </p>
@@ -38,8 +62,8 @@ function perfilUsuario() {
             <Card.Body>
               <h5 className="campo">datos de contacto</h5>
               <hr className="solid" />
-              <p>numero: +569 6543 2134</p>
-              <p>correo: ejemplo@gmail.com</p>
+              <p>numero: </p>
+              <p>correo: </p>
             </Card.Body>
           </Card>
         </div>
@@ -61,6 +85,8 @@ function perfilUsuario() {
             <CrearAnuncio/>
             </Tab>
             <Tab eventKey="anuncios" title="mis anuncios">
+              
+              <Misaviso/>
             </Tab>
             <Tab eventKey="empleadores" title="empleadores">
             </Tab>
