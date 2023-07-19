@@ -4,12 +4,15 @@ import useFetch from "../../hooks/useFetch";
 import validator from "validator";
 import Rut from "rut.js";
 import { useNavigate } from "react-router-dom";
+import eyes from "/eye.svg" 
 
 import "./signup.css";
 
 function Signup() {
   const { post } = useFetch();
   const [showModal, setShowModal] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword2, setShowPassword2] = useState(false);
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [rut, setRut] = useState("");
@@ -28,8 +31,16 @@ function Signup() {
   };
 
   const handleCloseModal = () => {
-
     setShowModal(false);
+    if (!setShowModal === false)
+    setNombre("")
+    setEmail("");
+    setRut("")
+    setTelefono("")
+    setPassword("");
+    setConfirmPassword("");
+    setIsCheck(false)
+    setErrors({});   
   };
 
   const handleNombreChange = (event) => {
@@ -83,7 +94,14 @@ function Signup() {
       
     } 
   };
-  
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+  const togglePasswordVisibility2 = () => {
+    setShowPassword2(!showPassword2);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -239,11 +257,13 @@ function Signup() {
               <Form.Group controlId="formPassword">
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control
-                  type="password"
+                  type={showPassword ? "text" : "password"}                  
                   placeholder="Ingresa tu contraseña"
                   value={password}
                   onChange={handlePasswordChange}
+                  className={showPassword ? "password-visible" : ""}
                 />
+                <img className="eye" src={eyes} alt="" onClick={togglePasswordVisibility}/>
                 {errors.password && (
                   <Alert variant="danger">{errors.password}</Alert>
                 )}
@@ -251,11 +271,14 @@ function Signup() {
               <Form.Group controlId="formPassword">
                 <Form.Label>Repite contraseña</Form.Label>
                 <Form.Control
-                  type="password"
+                  type={showPassword2 ? "text" : "password"}                  
                   placeholder="Reingresa tu contraseña"
                   value={confirmPassword}
                   onChange={handleConfirmPasswordChange}
+                  className={showPassword ? "password-visible" : ""}
                 />
+                <img className="eye2" src={eyes} alt="" onClick={togglePasswordVisibility2}/>
+
                 {errors.confirmPassword && (
                   <Alert variant="danger">{errors.confirmPassword}</Alert>
                 )}

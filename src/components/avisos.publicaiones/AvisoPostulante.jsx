@@ -3,8 +3,6 @@ import Card from "react-bootstrap/Card";
 import "./aviso.css";
 
 function AvisoPostulante(props) {
-  console.log(props);
-
   return (
     <>
       <div className="container">

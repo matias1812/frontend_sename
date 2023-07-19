@@ -20,11 +20,9 @@ function Home() {
       justify
     >
     <Tab eventKey="longer-tab" title="Marketplace">
-      <Encabezado />
       <Aviso/>
       </Tab>
       <Tab eventKey="contact" title="Ofertas Laborales" >
-      <Encabezado />
       <Publicacion />
       </Tab>
     </Tabs>

@@ -19,3 +19,19 @@
 .visible{
     display: block;
 }
+
+.eye{
+    position: absolute;
+    top: 67.5%;
+    right: 25px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .eye2{
+    position: absolute;
+    top: 81%;
+    right: 25px;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }  

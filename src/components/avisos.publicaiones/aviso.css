@@ -40,3 +40,10 @@
     font-family: 'Noto Sans', sans-serif;
 
 }
+
+.paginacion{
+    display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  margin-top: 20px;
+}

@@ -13,7 +13,7 @@ function useFetch() {
   }
 
   return {
-    get: ({ url, body, content_type  }) => Http({ method: 'GET', url, body, token, content_type  }),
+    get: ({ url, body, content_type  }) => Http({ method: 'GET', token, url, body, content_type  }).then(handleResponse),
     post: ({ url, body, content_type }) => Http({ method: 'POST', token, url, body, content_type }).then(handleResponse),
     put: ({ url, body, content_type }) => Http({ method: 'PUT', token, url, body, content_type }).then(handleResponse),
     patch: ({ url, body, content_type }) => Http({ method: 'PATCH', token, url, body, content_type }).then(handleResponse),

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import AvisoPostulante from "./AvisoPostulante";
+import AvisoPostulacion from "./cardPublicacion";
 
-function Aviso() {
+function Publicacion() {
   const { get } = useFetch();
-  const [avisos, setAvisos] = useState([]);
+  const [publicacines, setPublicaciones] = useState([]);
 
-  const formatAvisos = (avisos) => {
-    return avisos;
+  const formatPublicaciones = (publicacion) => {
+    return publicacion;
   };
 
   useEffect(() => {
@@ -20,12 +20,12 @@ function Aviso() {
         const credentials = {
           usuarioId: usuarioId,
         };
-        const Misaviso = async () => {
+        const Mispublicaciones = async () => {
           try {
-            const { data } = await get({ url: "/avisos/usuario", body: credentials, content_type: true });
+            const { data } = await get({ url: "/publicacines", body: credentials });
             console.log(data, "ki");
-            const formattedAvisos = formatAvisos(data);
-            setAvisos(formattedAvisos);
+            const formattedPublicaciones = formatPublicaciones(data);
+            setPublicaciones(formattedPublicaciones);
 
             if (data.status === 201) {
               setErrors({});
@@ -36,7 +36,7 @@ function Aviso() {
             console.error("Error:", error);
           }
         };
-        Misaviso();
+        Mispublicaciones();
       }
     }
   }, []);
@@ -44,11 +44,11 @@ function Aviso() {
   return (
     <div>
       <div className="container">
-        {avisos &&
-          avisos.map((aviso, i) => <AvisoPostulante key={i} aviso={aviso} />)}
+        {publicacines &&
+          publicacines.map((publicacion, i) => <publicacionPostulacion key={i} pu={publicacion} />)}
       </div>
     </div>
   );
 }
 
-export default Aviso;
+export default Publicacion;

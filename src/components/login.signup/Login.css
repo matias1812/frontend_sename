@@ -6,6 +6,10 @@
   margin-top: 6.5rem;
 }
 
-.eye{
-  left: -30;
+.eye1{
+  position: absolute;
+  top: 10.5rem;
+  right: 25px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }

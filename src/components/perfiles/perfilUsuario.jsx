@@ -7,7 +7,7 @@ import TablaExperiencias from '../tablas/TablaExperiencia'
 import TablaHabilidades from '../tablas/TablaHabilidades'
 import CrearAnuncio from "../avisos.publicaiones/crearAviso";
 import useFetch from "../../hooks/useFetch";
-import Misaviso from "../avisos.publicaiones/misAvisos"
+import Aviso from "../avisos.publicaiones/misAvisos"
 import "./perfilUsuario.css";
 
 function perfilUsuario() {
@@ -86,7 +86,7 @@ return (
             </Tab>
             <Tab eventKey="anuncios" title="mis anuncios">
               
-              <Misaviso/>
+              <Aviso/>
             </Tab>
             <Tab eventKey="empleadores" title="empleadores">
             </Tab>

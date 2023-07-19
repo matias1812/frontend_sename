@@ -2,11 +2,9 @@ import { Card } from "react-bootstrap";
 import { useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import CrearAviso from "../avisos.publicaiones/crearAviso";
-
+import CrearPublicacion from "../avisos.publicaiones/crearPublicacion";
 import "./perfilEmpresas.css";
-import mario from '/mario.png'
-
+import Publicacion from "../avisos.publicaiones/misPublicaciones";
 function PerfilEmpresas() {
   const [key, setKey] = useState("home");
 
@@ -17,7 +15,6 @@ function PerfilEmpresas() {
           <Card>
             <Card.Body>
               <div className="perfil">
-                <img className="profile-image" src={mario} alt="Profile" />
               </div>
               <h3 className="campo">sename</h3>
               <h5>datos personales</h5>
@@ -52,10 +49,10 @@ function PerfilEmpresas() {
 
             </Tab>
             <Tab eventKey="profile" title="crear anuncio">
-                <CrearAviso/>
+                <CrearPublicacion/>
             </Tab>
             <Tab eventKey="contact" title="mis anuncios">
-                
+                <Publicacion/>
             </Tab>
           </Tabs>
         </div>

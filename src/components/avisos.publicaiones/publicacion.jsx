@@ -1,41 +1,86 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import useFetch from "../../hooks/useFetch";
 import AvisoPostulacion from "./cardPublicacion";
-
+import Encabezado from "../Encabezado";
+import Paginacion from "./pagination";
 
 function Publicacion() {
   const { get } = useFetch();
   const [publicaciones, setPublicaciones] = useState([]);
-  
+  const [selectedRegion, setSelectedRegion] = useState("");
+  const [filterApplied, setFilterApplied] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [publicacionPerPage] = useState(10);
+  const avisoContainerRef = useRef(null);
+
   const formatPublicaciones = (publicaciones) => {
      return  publicaciones   
 };
+
+const handleFilterClick = () => {
+  setFilterApplied(true);
+  setCurrentPage(1);
+};
+
+const indexOfLastPublicacion = currentPage * publicacionPerPage;
+const indexOfFirstPublicacion = indexOfLastPublicacion - publicacionPerPage;
+const currentPublicaciones = publicaciones.slice(indexOfFirstPublicacion, indexOfLastPublicacion);
 
   const getPublicaciones = async () => {
     try {
         const { data } = await get({ url: "/publicaciones/all" });
        const formattedPublicaciones = formatPublicaciones(data);
-       setPublicaciones(formattedPublicaciones);
+       const filteredPublicacion = selectedRegion
+       ? formattedPublicaciones.filter((publicacion) => publicacion.ubicacion === selectedRegion)
+       : formattedPublicaciones;
+
+       setPublicaciones(filteredPublicacion);
     } catch (error) {
       console.error("Error:", error);
     }
   };
-  
+
+  useEffect(() => {
+    if (filterApplied) {
+      getPublicaciones();
+      setFilterApplied(false);
+      setCurrentPage(1);
+    }
+  }, [filterApplied, selectedRegion]);
+
   useEffect(() => {
     getPublicaciones();
   }, []);
   
   useEffect(() => {
-}, [publicaciones])
+    if (avisoContainerRef.current) {
+      avisoContainerRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [currentPage, publicaciones]);  
+
+const paginate = (pageNumber) => {
+  setCurrentPage(pageNumber);
+  
+};
 
   return (
-    <div>
+    <div >
+      <Encabezado onRegionChange={setSelectedRegion} onFilterClick={handleFilterClick}/>
       <div className="container">
-        {publicaciones &&
-          publicaciones.map((publicacion, i) => (
-            <AvisoPostulacion key={i} publicacion={publicacion}/>
+        {currentPublicaciones &&
+          currentPublicaciones.map((publicacion, i) => (
+            <AvisoPostulacion key={i} publicacion={publicacion} className="aviso-item"/>
           ))}
       </div>
+      <div className="paginacion" ref={avisoContainerRef}>
+        <Paginacion
+          avisosPerPage={publicacionPerPage}
+          totalAvisos={publicaciones.length}
+          currentPage={currentPage}
+          paginate={paginate}
+        />
+      </div>
+
     </div>
   );
 }

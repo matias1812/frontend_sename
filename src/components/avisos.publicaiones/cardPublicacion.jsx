@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import "./publicacion.css"
 
 function AvisoPostulacion(props) {
-  
+  console.log(props);
 return (
   <Card border="primary" className="card m-5">
                 <Card.Body>

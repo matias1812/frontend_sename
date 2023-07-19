@@ -10,6 +10,7 @@ import "./Login.css";
 function Login() {
   const { post } = useFetch();
   const [showModal, setShowModal] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -30,8 +31,12 @@ function Login() {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    if (!setShowModal === false)
+      setEmail("");
+      setPassword("");
+      setErrors({});   
   };
-
+  
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -40,6 +45,9 @@ function Login() {
     setPassword(event.target.value);
   };
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -115,12 +123,13 @@ console.log(data);
               <Form.Group controlId="formPassword">
                 <Form.Label>Contraseña</Form.Label>
                 <Form.Control
-                  type="password"
+                  type={showPassword ? "text" : "password"}                  
                   placeholder="Ingresa tu contraseña"
                   value={password}
                   onChange={handlePasswordChange}
+                  className={showPassword ? "password-visible" : ""}
                 />
-                <img className="eye" src={eyes} alt="" />
+                <img className="eye1" src={eyes} alt="" onClick={togglePasswordVisibility}/>
                 {errors.password && (
                   <Alert variant="danger">{errors.password}</Alert>
                 )}
