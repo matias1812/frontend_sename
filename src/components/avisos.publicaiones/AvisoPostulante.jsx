@@ -12,7 +12,7 @@ function AvisoPostulante(props) {
               {props.aviso.titulo}
             </Card.Title>
             <Card.Text className="sueldo1">
-              ${props.aviso.precio}
+            {new Intl.NumberFormat("es-CL", {style: "currency", currency: "CLP"}).format(props.aviso.precio)}
             </Card.Text>
             <p className="descripcion1">{props.aviso.descripcion}</p>
             <p className="ubicacion1">Region: {props.aviso.ubicacion}</p>

@@ -1,19 +1,16 @@
-import { Card } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
-import TablaEstudios from '../tablas/TablaEstudio'
-import TablaExperiencias from '../tablas/TablaExperiencia'
-import TablaHabilidades from '../tablas/TablaHabilidades'
-import CrearAnuncio from "../avisos.publicaiones/crearAviso";
 import useFetch from "../../hooks/useFetch";
-import Aviso from "../avisos.publicaiones/misAvisos"
 import "./perfilUsuario.css";
+import DatosPersonales from "./datosPersonales";
 
 function perfilUsuario() {
-  const [key, setKey] = useState("home");
   const { get } = useFetch();
-  const [postulante, setPostulante] = useState(null);
+  const [postulante, setPostulante] = useState([]);
+
+
+  // const formatPostulante = (postulante) => {
+  //   return postulante;
+  // };
 
  useEffect(() => {
   const userData = localStorage.getItem("user");
@@ -21,16 +18,15 @@ function perfilUsuario() {
     const data = JSON.parse(userData);
     const usuarioId = data.user.id;
 
-    const credentials = {
-      usuarioId: usuarioId,
-    };
 const fetchPostulanteData = async () => {
       try {
-        const {data} = await get({ url: '/postulantes', body: credentials });
+        const {data} = await get({ url: `/postulantes/usuario/${usuarioId}`});
         console.log(data, "postulante");
-        if (data.length > 0) {
-          setPostulante(data[0]);
+        setPostulante(data);
+        if (data === 201) {
+
         }
+
       } catch (error) {
         console.error("Error:", error);
       }
@@ -40,60 +36,11 @@ const fetchPostulanteData = async () => {
     
   }
 }, []);
+
 return (
     <>
-      <div className="container-flex">
-        <div className="column2">
-          <Card>
-            <Card.Body>
-              <h3 className="campo">Matias</h3>
-              <h5>datos personales</h5>
-              <hr className="solid" />
-              <p>nombres: </p>
-              <p>apellidos: </p>
-              <p>Nacionalidad: </p>
-              <p>RUT: </p>
-              <p>
-                
-              </p>
-            </Card.Body>
-          </Card>
-          <Card className="contacto">
-            <Card.Body>
-              <h5 className="campo">datos de contacto</h5>
-              <hr className="solid" />
-              <p>numero: </p>
-              <p>correo: </p>
-            </Card.Body>
-          </Card>
-        </div>
-        <div className="column3 ">
-          <Tabs
-            id="controlled-tab-example"
-            activeKey={key}
-            onSelect={(k) => setKey(k)}
-            className="mb-3 "
-            justify
-            variant="tabs"
-          >
-            <Tab eventKey="home" title="curriculum">
-                <TablaExperiencias></TablaExperiencias> 
-                <TablaEstudios></TablaEstudios>
-                <TablaHabilidades></TablaHabilidades>   
-            </Tab>
-            <Tab eventKey="profile" title="crear anuncio">
-            <CrearAnuncio/>
-            </Tab>
-            <Tab eventKey="anuncios" title="mis anuncios">
-              
-              <Aviso/>
-            </Tab>
-            <Tab eventKey="empleadores" title="empleadores">
-            </Tab>
-          </Tabs>
-        </div>
-      </div>
+    <DatosPersonales  />
     </>
-  );
+)
 }
 export default perfilUsuario;

@@ -17,7 +17,7 @@ function useFetch() {
     post: ({ url, body, content_type }) => Http({ method: 'POST', token, url, body, content_type }).then(handleResponse),
     put: ({ url, body, content_type }) => Http({ method: 'PUT', token, url, body, content_type }).then(handleResponse),
     patch: ({ url, body, content_type }) => Http({ method: 'PATCH', token, url, body, content_type }).then(handleResponse),
-    delete: ({ url }) => Http({ method: 'DELETE', token, url })
+    del: ({ url }) => Http({ method: 'DELETE', token, url })
   }
 }
 

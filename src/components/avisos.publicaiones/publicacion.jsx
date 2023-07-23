@@ -29,6 +29,7 @@ const currentPublicaciones = publicaciones.slice(indexOfFirstPublicacion, indexO
   const getPublicaciones = async () => {
     try {
         const { data } = await get({ url: "/publicaciones/all" });
+        console.log(data, "publicaciones");
        const formattedPublicaciones = formatPublicaciones(data);
        const filteredPublicacion = selectedRegion
        ? formattedPublicaciones.filter((publicacion) => publicacion.ubicacion === selectedRegion)

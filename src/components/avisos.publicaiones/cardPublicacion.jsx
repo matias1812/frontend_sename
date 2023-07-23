@@ -4,12 +4,13 @@ import Card from "react-bootstrap/Card";
 import "./publicacion.css"
 
 function AvisoPostulacion(props) {
-  console.log(props);
+  console.log(props, "props");
+
 return (
   <Card border="primary" className="card m-5">
                 <Card.Body>
                   <Card.Title className="titulo">{props.publicacion.titulo}</Card.Title>
-                  <Card.Text className="sueldo">${props.publicacion.rangosalarial}</Card.Text>
+                  <Card.Text className="sueldo">{new Intl.NumberFormat("es-CL", {style: "currency", currency: "CLP"}).format(props.publicacion.rangosalarial)}</Card.Text>
                   <p className="jornada">jornada: {props.publicacion.jornada}</p>
                   <p className="ubicacion">Region: {props.publicacion.ubicacion}</p>
                   <div className="postula">
