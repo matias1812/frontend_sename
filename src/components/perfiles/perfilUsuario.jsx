@@ -39,7 +39,7 @@ const fetchPostulanteData = async () => {
 
 return (
     <>
-    <DatosPersonales  />
+    <DatosPersonales postulante={postulante} />
     </>
 )
 }
