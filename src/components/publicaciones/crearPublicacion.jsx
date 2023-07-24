@@ -3,7 +3,7 @@ import validator from "validator";
 import useFetch from "../../hooks/useFetch";
 import React, { useState } from "react";
 
-import "./crearAviso.css";
+import "../avisos/crearAviso.css";
 
 function CrearPublicacion() {
   const { post } = useFetch();

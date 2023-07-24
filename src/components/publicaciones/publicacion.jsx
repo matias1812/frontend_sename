@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import useFetch from "../../hooks/useFetch";
 import AvisoPostulacion from "./cardPublicacion";
 import Encabezado from "../Encabezado";
-import Paginacion from "./pagination";
+import Paginacion from "../avisos/pagination";
 
 function Publicacion() {
   const { get } = useFetch();

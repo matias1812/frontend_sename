@@ -2,9 +2,9 @@ import { Card } from "react-bootstrap";
 import { useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import CrearPublicacion from "../avisos.publicaiones/crearPublicacion";
+import CrearPublicacion from "../publicaciones/crearPublicacion";
 import "./perfilEmpresas.css";
-import Publicacion from "../avisos.publicaiones/misPublicaciones";
+import Publicacion from "../publicaciones/misPublicaciones";
 function PerfilEmpresas() {
   const [key, setKey] = useState("home");
 

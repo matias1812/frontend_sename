@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch";
 import AvisoPerfil from "./avisoPerfil";
 
 function Aviso() {
-  const { get, del } = useFetch();
+  const { get } = useFetch();
   const [avisos, setAvisos] = useState([]);
 
   const formatAvisos = (avisos) => {
@@ -33,21 +33,6 @@ function Aviso() {
     
   }, []);
   
-  useEffect(() => {
-  const fetchdelete = async () => {
-    try {
-      const {data} = await del({ url: `/avisos/delete/${avisoId}`});
-      setPostulante(data);
-      if (data === 201) {
-
-      }
-
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-}, []);
-
   return ( 
     <div>
       <div className="container">

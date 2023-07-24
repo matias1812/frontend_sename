@@ -4,8 +4,8 @@ import Tabs from "react-bootstrap/Tabs";
 import TablaEstudios from '../tablas/TablaEstudio'
 import TablaExperiencias from '../tablas/TablaExperiencia'
 import TablaHabilidades from '../tablas/TablaHabilidades'
-import CrearAnuncio from "../avisos.publicaiones/crearAviso";
-import Aviso from "../avisos.publicaiones/misAvisos"
+import CrearAnuncio from "../avisos/crearAviso";
+import Aviso from "../avisos/misAvisos"
 import React, { useState } from "react";
 
 const DatosPersonales = ({postulante}) => {

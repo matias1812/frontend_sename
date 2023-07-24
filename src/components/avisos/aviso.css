@@ -47,3 +47,9 @@
   align-items: center; /* Centra verticalmente */
   margin-top: 20px;
 }
+
+.trash{
+    margin-left: 57rem;
+    margin-top: -1rem;
+    margin-bottom: -1rem;
+}

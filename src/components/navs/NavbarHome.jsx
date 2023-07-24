@@ -40,7 +40,6 @@ function NavbarHome() {
               <NavDropdown.Item href="/documentos">
                 documentacion
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Ajustes</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={logoutHandler}>
                 Cerrar Sesion

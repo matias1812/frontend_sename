@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Modal, Form, Alert } from "react-bootstrap";
+import { Button, Modal, Form} from "react-bootstrap";
 
 import "./tablas.css";
 
@@ -17,6 +17,49 @@ export default function TablaEstudio() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+
+    const credentials = {
+      // nombre: nombre,
+      correo: email,
+      // rut: rut,
+      // telefono: telefono,
+      contrasena: password,
+      //razonSocial: {razonSocial}
+    };
+
+    try {
+      //const credenciales = Object.fromEntries(new FormData(credentials));
+      if (isCheck == undefined) {
+        const { data } = await post({ url: "/auth/signup", body: credentials  });
+        if (data) return navigate("/bienvenida");        
+      }
+      if (response.status === 201) {
+        // Restablecer el estado del formulario
+        setEmail("");
+        setPassword("");
+        setShowModal(false);
+        setErrors({});
+        isCheck(false)
+
+        navigate("/bienvenida");
+
+        // Manejar registro exitoso (por ejemplo, mostrar un mensaje de éxito)
+        console.log("Registro exitoso:", response.data);
+      } else {
+        // Manejar error de registro
+        console.error("Error de registro:", response.error);
+      }
+    } catch (error) {
+      // Manejar error de red u otro error
+      console.error("Error:", error);
+    }
+  };
+
+
 
   function handleAddItem(event){
     event.preventDefault();
