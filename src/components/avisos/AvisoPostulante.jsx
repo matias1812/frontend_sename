@@ -17,7 +17,7 @@ function AvisoPostulante(props) {
             <p className="descripcion1">{props.aviso.descripcion}</p>
             <p className="ubicacion1">Region: {props.aviso.ubicacion}</p>
             <div className="postula">
-              <Button variant="outline-primary" href="/detalles">
+              <Button variant="outline-primary" href={`/detalles/?id=${id}`}>
                 Postular
               </Button>
             </div>

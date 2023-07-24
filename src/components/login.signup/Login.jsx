@@ -77,7 +77,7 @@ function Login() {
       const { data } = await post({ url: "/auth/login", body: credentials });
       if (data) return navigate("/bienvenida");
 console.log(data);
-      if (data.response.status === 201) {
+      if (data === 201) {
         // Restablecer el estado del formulario
         setEmail("");
         setPassword("");
