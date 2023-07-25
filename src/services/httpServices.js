@@ -10,7 +10,7 @@ async function Http({ method = 'GET', url = '/boards', token = null, body = null
       'Accept': 'application/json'
     }
   }
-  console.log('method',method, 'url', url, 'token', token, 'body', body, 'content_type', content_type)
+  // console.log('method',method, 'url', url, 'token', token, 'body', body, 'content_type', content_type)
   if (content_type) {
     config.headers['Content-Type'] = 'application/json'
   }
@@ -26,10 +26,10 @@ async function Http({ method = 'GET', url = '/boards', token = null, body = null
     config.body = body
   }
   try {
-    console.log('full_url',full_url, 'config', config);
+    // console.log('full_url',full_url, 'config', config);
 
     const response = await fetch(full_url.href, config)
-    console.log('response',response);
+    // console.log('response',response);
 
     const data = await response.json()
     if (!response.ok) throw data.error

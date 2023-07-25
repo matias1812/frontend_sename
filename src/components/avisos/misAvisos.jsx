@@ -33,12 +33,9 @@ function Aviso() {
   }, []);
 
     const avisosDelete = async (avisosId) => {
-      console.log(avisosId);
         try {
-          // const {data} = await del({ url: `/avisos/delete/${avisosId}`});
-            console.log("Aviso eliminado");
-            // setAvisos((prevAvisos) => prevAvisos.filter((aviso) => aviso.id !== avisosId));
-    
+          await del({ url: `/avisos/delete/${avisosId}`});
+          setAvisos((avisos) => avisos.filter((aviso) => aviso.id !== avisosId));
         } catch (error) {
           console.error("Error:", error);
         }
@@ -48,7 +45,7 @@ function Aviso() {
     <div>
       <div className="container">
         {(avisos).map((aviso, i) => (
-          <AvisoPerfil key={i} aviso={aviso} onDelete={this.avisosDelete(aviso.id)}/>
+          <AvisoPerfil key={i} aviso={aviso} onDelete={() => avisosDelete(aviso.id)}/>
         ))}
       </div>
     </div>
