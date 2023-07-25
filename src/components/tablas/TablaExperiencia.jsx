@@ -50,7 +50,7 @@ export default function TablaExperiencia() {
     };
 
     try {
-        const { data } = await post({ url: "/usuarios/experiencia", body: credentials  });
+        const { data } = await post({ url: "/experiencias", body: credentials  });
 
         if (data === 201) {
         setEmpresa("");
@@ -76,7 +76,7 @@ export default function TablaExperiencia() {
       const postulanteId = data.user.id;
   
     const getTableData = async () => {
-      const { data } = await get({ url: `/usuarios/postulante/${postulanteId}` });
+      const { data } = await get({ url: `/experiencias/postulanteId/${postulanteId}` });
       console.log(data, "EXP");
       setTableData(data);
     };

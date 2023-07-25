@@ -3,7 +3,7 @@ import useFetch from "../../hooks/useFetch";
 import AvisoPerfil from "./avisoPerfil";
 
 function Aviso() {
-  const { get } = useFetch();
+  const { get, del } = useFetch();
   const [avisos, setAvisos] = useState([]);
 
   const formatAvisos = (avisos) => {
@@ -29,15 +29,26 @@ function Aviso() {
         Misaviso();
       }
     }
-``
     
   }, []);
+
+    const avisosDelete = async (avisosId) => {
+      console.log(avisosId);
+        try {
+          // const {data} = await del({ url: `/avisos/delete/${avisosId}`});
+            console.log("Aviso eliminado");
+            // setAvisos((prevAvisos) => prevAvisos.filter((aviso) => aviso.id !== avisosId));
+    
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
   
   return ( 
     <div>
       <div className="container">
         {(avisos).map((aviso, i) => (
-          <AvisoPerfil key={i} aviso={aviso} />
+          <AvisoPerfil key={i} aviso={aviso} onDelete={this.avisosDelete(aviso.id)}/>
         ))}
       </div>
     </div>
