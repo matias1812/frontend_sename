@@ -8,7 +8,7 @@ function Detalles() {
   const [avisos, setAvisos] = useState([]);
   
   const formatAvisos = (avisos) => {
-    return Object.entries(avisos) ;
+    return avisos ;
   };
   
   const queryParams = new URLSearchParams(window.location.search);

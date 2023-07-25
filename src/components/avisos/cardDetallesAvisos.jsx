@@ -10,11 +10,11 @@ function CardDetalles({avisos}) {
  <div className='app-container'>
         <div  className='column'>
           <Card border="primary" style={{ width: '55rem' }}>
-            <Card.Header id='titulo'></Card.Header>
+            <Card.Header id='titulo'>{avisos.titulo}</Card.Header>
             <Card.Body>
-              <Card.Title>cargo</Card.Title>
+              <Card.Title>{avisos.cargo}</Card.Title>
               <Card.Text>
-                
+                {avisos.descripcion}
               </Card.Text>
               
             </Card.Body>
