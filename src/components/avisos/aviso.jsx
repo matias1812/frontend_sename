@@ -13,28 +13,26 @@ function Aviso() {
   const [avisosPerPage] = useState(10);
   const avisoContainerRef = useRef(null);
 
-  const formatAvisos = (avisos) => {
-    return avisos;
-  };
-
   const handleFilterClick = () => {
     setFilterApplied(true);
     setCurrentPage(1);
   };
-
-  const indexOfLastAviso = currentPage * avisosPerPage;
-  const indexOfFirstAviso = indexOfLastAviso - avisosPerPage;
-  const currentAvisos = avisos.slice(indexOfFirstAviso, indexOfLastAviso);
-
+  
+  let currentAvisos 
   const getAvisos = async () => {
     try {
       const { data } = await get({ url: "/avisos/all" });
-      const formattedAvisos = formatAvisos(data);
       const filteredAvisos = selectedRegion
-        ? formattedAvisos.filter((aviso) => aviso.ubicacion === selectedRegion)
-        : formattedAvisos;
-
-      setAvisos(filteredAvisos);
+      ? data.filter((aviso) => aviso.ubicacion === selectedRegion)
+      : data;
+      setAvisos(data);
+      console.log(avisos, "avisos");
+      
+      const indexOfLastAviso = currentPage * avisosPerPage;
+      const indexOfFirstAviso = indexOfLastAviso - avisosPerPage;
+      currentAvisos = avisos.slice(indexOfFirstAviso, indexOfLastAviso);
+      console.log(data, "data123");
+      console.log(currentAvisos, "currentAvisos");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -70,15 +68,20 @@ function Aviso() {
         onFilterClick={handleFilterClick}
       />
       <div className="container"  ref={avisoContainerRef}>
-        {currentAvisos &&
-          currentAvisos.map((aviso, i) => (
-            <AvisoPostulante key={i} aviso={aviso} />
-          ))}
+        {currentAvisos ?
+          // currentAvisos &&
+          //   currentAvisos.map((aviso, i) => (
+          //     <AvisoPostulante key={i} aviso={aviso} />
+          //   ))
+            
+          <h1>si ahi avisos</h1> : <h1>{currentAvisos}</h1>
+          
+          }
       </div>
       <div className="paginacion">
         <Paginacion
           avisosPerPage={avisosPerPage}
-          totalAvisos={avisos.length}
+          // totalAvisos={avisos.length}
           currentPage={currentPage}
           paginate={paginate}
         />

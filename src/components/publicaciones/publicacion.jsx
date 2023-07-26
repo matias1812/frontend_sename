@@ -22,19 +22,20 @@ const handleFilterClick = () => {
   setCurrentPage(1);
 };
 
-const indexOfLastPublicacion = currentPage * publicacionPerPage;
-const indexOfFirstPublicacion = indexOfLastPublicacion - publicacionPerPage;
-const currentPublicaciones = publicaciones.slice(indexOfFirstPublicacion, indexOfLastPublicacion);
+let currentPublicaciones
 
-  const getPublicaciones = async () => {
-    try {
-        const { data } = await get({ url: "/publicaciones/all" });
-        console.log(data, "publicaciones");
-       const formattedPublicaciones = formatPublicaciones(data);
-       const filteredPublicacion = selectedRegion
-       ? formattedPublicaciones.filter((publicacion) => publicacion.ubicacion === selectedRegion)
-       : formattedPublicaciones;
-
+const getPublicaciones = async () => {
+  try {
+    const { data } = await get({ url: "/publicaciones/all" });
+    console.log(data, "publicaciones");
+    const formattedPublicaciones = formatPublicaciones(data);
+    const filteredPublicacion = selectedRegion
+    ? formattedPublicaciones.filter((publicacion) => publicacion.ubicacion === selectedRegion)
+    : formattedPublicaciones;
+    
+    const indexOfLastPublicacion = currentPage * publicacionPerPage;
+    const indexOfFirstPublicacion = indexOfLastPublicacion - publicacionPerPage;
+    currentPublicaciones = publicaciones.slice(indexOfFirstPublicacion, indexOfLastPublicacion);
        setPublicaciones(filteredPublicacion);
     } catch (error) {
       console.error("Error:", error);
@@ -71,12 +72,13 @@ const paginate = (pageNumber) => {
         {currentPublicaciones &&
           currentPublicaciones.map((publicacion, i) => (
             <CardPostulacion key={i} publicacion={publicacion} className="aviso-item"/>
-          ))}
+          ))
+        }
       </div>
       <div className="paginacion" ref={avisoContainerRef}>
         <Paginacion
           avisosPerPage={publicacionPerPage}
-          totalAvisos={publicaciones.length}
+          // totalAvisos={publicaciones.length}
           currentPage={currentPage}
           paginate={paginate}
         />

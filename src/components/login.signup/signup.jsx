@@ -21,7 +21,7 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState({});
   const [razonSocial, setRazonSocial] = useState("");
-  const [isCheck, setIsCheck] = useState();
+  const [isCheck, setIsCheck] = useState(false);
   const [rutEmpresa, setRutEmpresa] = useState("");
 
   const navigate = useNavigate();
@@ -34,7 +34,6 @@ function Signup() {
     setShowModal(false);
     if (!handleCloseModal === false)
     setNombre("")
-    setRutEmpresa("")
     setEmail("");
     setRut("")
     setTelefono("")
@@ -48,40 +47,40 @@ function Signup() {
     
     setNombre(event.target.value);
   };
-
+  
   const handleRutChange = (event) => {
-
+    
     setRut(event.target.value);
   };
-
+  
   const handleConfirmPasswordChange = (event) => {
-
+    
     setConfirmPassword(event.target.value);
   };
-
+  
   const handleTelefonoChange = (event) => {
-
+    
     setTelefono(event.target.value);
   };
-
+  
   const handleEmailChange = (event) => {
-
+    
     setEmail(event.target.value);
   };
-
+  
   const handlePasswordChange = (event) => {
-
+    
     setPassword(event.target.value);
   };
-
+  
   const handleRazonSocialChange = (event) => {
     setRazonSocial(event.target.value);
   };
-
+  
   const handleRutEmpresaChange = (event) => {
     setRutEmpresa(event.target.value);
   };
-
+  
   const handleIsCheckChange = () => {
     if(!isCheck) {
       setIsCheck(true);
@@ -92,6 +91,8 @@ function Signup() {
       setIsCheck(false);
       document.querySelector("#datoempresa").classList.remove("visible")
       document.querySelector("#datoempresa").classList.add("invisible")
+      setRutEmpresa("")
+      setRazonSocial("")
       
     } 
   };
@@ -108,7 +109,7 @@ function Signup() {
 
     const validationErrors = {};
 
-    const credentials = {
+    let credentials = {
       nombre: nombre,
       correo: email,
       rut: rut,
@@ -152,7 +153,7 @@ function Signup() {
     if (!rut || !Rut.validate(rut)) {
       validationErrors.rut = "Debe ingresar un RUT válido";
     }
-    if (!rutEmpresa || !Rut.validate(rutEmpresa)) {
+    if (isCheck && !rutEmpresa && !Rut.validate(rutEmpresa)) {
       validationErrors.rutEmpresa = "Debe ingresar un RUT válido";
     }
 
@@ -167,11 +168,16 @@ function Signup() {
     }
 
     try {
-      //const credenciales = Object.fromEntries(new FormData(credentials));
-      if (isCheck == undefined) {
+        credentials.esEmpresa = isCheck;
+      if (isCheck == false) {
+        console.log(credentials, "postulante123");
         const { data } = await post({ url: "/auth/signup", body: credentials  });
-        console.log(data, "data");
-        if (data == 201) return navigate("/bienvenida");        
+        if (data) return navigate("/bienvenida");
+        console.log(data, "postulante");
+      }else {
+        const { data } = await post({ url: "/auth/signup", body: credentials  });
+        console.log(data, "empresa");
+        if (data) return navigate("/bienvenida");
         setEmail("");
         setPassword("");
         setConfirmPassword("");
@@ -181,9 +187,6 @@ function Signup() {
         setErrors({});
         isCheck(false)
         navigate("/bienvenida");
-      }else {
-        // Manejar error de registro
-        console.error("Error de registro:", response.error);
       }
     } catch (error) {
       // Manejar error de red u otro error
