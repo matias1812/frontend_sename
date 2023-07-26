@@ -1,39 +1,30 @@
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './Detalles.css'
-import Form from 'react-bootstrap/Form';
 
 function CardDetalles({avisos}) {
     console.log(avisos);
-
+  
   return (
- <div className='app-container'>
-        <div  className='column'>
-          <Card border="primary" style={{ width: '55rem' }}>
+ <div className='app-container column d-flex flex-column flex-sm-row justify-content-between'>
+        <div  className='column '>
+          <Card border="primary" style={{ width: '75rem' }}>
             <Card.Header id='titulo'>{avisos.titulo}</Card.Header>
             <Card.Body>
               <Card.Title>{avisos.cargo}</Card.Title>
+              <h3>{new Intl.NumberFormat("es-CL", {style: "currency", currency: "CLP"}).format(avisos.precio)}</h3>
+              <h6>Region: {avisos.ubicacion}</h6>
               <Card.Text>
                 {avisos.descripcion}
               </Card.Text>
-              
+              <h3>Datos Personales</h3>
+              <Card.Text>
+                Telefono: 
+                <br/>
+                Correo: 
+              </Card.Text>
             </Card.Body>
           </Card>
         </div>
-    <div className='column1'>
-        <Card className=''>
-            <Card.Header>
-                <Form.Control type="number" placeholder="ingresa sueldo bruto a pretender" /> 
-                <p>este campo solo acepta numeros</p>
-            </Card.Header>
-            <Card.Body>
-                <p>Recuerda que el sueldo bruto es el salario total sin las retenciones e impuestos.</p>
-               <div className='postular'>
-                <Button variant="outline-primary">cntactar</Button>
-               </div> 
-            </Card.Body>
-        </Card>
-    </div> 
  </div>
   );
 }

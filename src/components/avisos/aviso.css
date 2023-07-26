@@ -9,12 +9,13 @@
     display: flex;
     flex-direction: column;
     align-items: end;
-    margin-right: 1rem;
+    margin-top: 1.5rem;
+
 }
 
 .titulo1{
     display: flex;
-    margin: 1rem;
+    margin-left: 1rem;
     font-size: 2.5em;
     font-family: 'Belanosima', sans-serif;
 }
@@ -34,8 +35,15 @@
     margin-top: -1rem;
 }
 
+.jornada{
+        font-family: 'Noto Sans', sans-serif;
+        font-size: 1.5rem;
+        margin-top: 5rem;
+        margin-right: 50rem;
+    }
+
 .ubicacion1{
-    margin-top: -6.5rem;
+    margin-top: -8rem;
     margin-left: 54rem;
     font-family: 'Noto Sans', sans-serif;
 
@@ -47,9 +55,6 @@
   align-items: center; /* Centra verticalmente */
   margin-top: 20px;
 }
-
-.trash{
-    margin-left: 35rem;
-    margin-top: -1rem;
-    margin-bottom: -1rem;
+.card{
+    margin-top: 1rem;
 }

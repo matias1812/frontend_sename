@@ -21,12 +21,7 @@ function perfilUsuario() {
 const fetchPostulanteData = async () => {
       try {
         const {data} = await get({ url: `/postulantes/usuario/${usuarioId}`});
-        console.log(data, "postulante");
         setPostulante(data);
-        if (data === 201) {
-
-        }
-
       } catch (error) {
         console.error("Error:", error);
       }
@@ -36,10 +31,13 @@ const fetchPostulanteData = async () => {
     
   }
 }, []);
+const userData = localStorage.getItem("user");
+const data = JSON.parse(userData);
+const usuarioCorreo = data.user.correo;
 
 return (
     <>
-    <DatosPersonales postulante={postulante} />
+    <DatosPersonales postulante={postulante} correo={usuarioCorreo}/>
     </>
 )
 }

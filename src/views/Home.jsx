@@ -1,7 +1,5 @@
 import NavbarHome from "../components/navs/NavbarHome";
 import Publicacion from "../components/publicaciones/publicacion";
-import Encabezado from "../components/Encabezado";
-import Pagination from "react-bootstrap/Pagination";
 import Footer from "../components/footer";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';

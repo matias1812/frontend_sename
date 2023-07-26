@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import useFetch from "../../hooks/useFetch";
-import AvisoPostulacion from "./cardPublicacion";
+import CardPostulacion from "./cardPublicacion";
 import Encabezado from "../Encabezado";
 import Paginacion from "../avisos/pagination";
 
@@ -70,7 +70,7 @@ const paginate = (pageNumber) => {
       <div className="container">
         {currentPublicaciones &&
           currentPublicaciones.map((publicacion, i) => (
-            <AvisoPostulacion key={i} publicacion={publicacion} className="aviso-item"/>
+            <CardPostulacion key={i} publicacion={publicacion} className="aviso-item"/>
           ))}
       </div>
       <div className="paginacion" ref={avisoContainerRef}>

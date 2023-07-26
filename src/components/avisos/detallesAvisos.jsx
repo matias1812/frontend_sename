@@ -6,7 +6,7 @@ import './Detalles.css'
 function Detalles() {
   const { get } = useFetch();
   const [avisos, setAvisos] = useState([]);
-  
+
   const formatAvisos = (avisos) => {
     return avisos ;
   };
@@ -32,7 +32,7 @@ function Detalles() {
 
   return (
  <div className='app-container'>
-    <CardDetalles avisos={avisos}/>
+    <CardDetalles avisos={avisos} />
  </div>
   );
 }

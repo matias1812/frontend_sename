@@ -1,70 +1,67 @@
 import { Card } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import TablaEstudios from '../tablas/TablaEstudio'
-import TablaExperiencias from '../tablas/TablaExperiencia'
-import TablaHabilidades from '../tablas/TablaHabilidades'
+import TablaEstudios from '../tablas/TablaEstudio';
+import TablaExperiencias from '../tablas/TablaExperiencia';
+import TablaHabilidades from '../tablas/TablaHabilidades';
 import CrearAnuncio from "../avisos/crearAviso";
-import Aviso from "../avisos/misAvisos"
+import Aviso from "../avisos/misAvisos";
 import React, { useState } from "react";
 
-const DatosPersonales = ({postulante}) => {
-    const [key, setKey] = useState("home");
-console.log(postulante, "postulante");
-return (
-<>
-<div className="container-flex">
-  <div className="column2">
-    <Card>
-      <Card.Body>
-        <h3 className="campo"><br></br></h3>
+const DatosPersonales = ({ postulante, correo }) => {
+  const [key, setKey] = useState("home");
+
+  return (
+    <>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-4 col-md-12">
+            <Card>
+            <h3 className="campo">{postulante.nombre}<br/>{postulante.apellido}</h3>
         <h5>datos personales</h5>
         <hr className="solid" />
-        <p>nombres: </p>
-        <p>apellidos: </p>
-        <p>Nacionalidad: </p>
-        <p>RUT:</p>
-        <p>
-          
-        </p>
-      </Card.Body>
-    </Card>
-    <Card className="contacto">
-      <Card.Body>
-        <h5 className="campo">datos de contacto</h5>
+        <p>nombres: {postulante.nombre}</p>
+        <p>apellidos: {postulante.apellido}</p>
+        <p>Nacionalidad: {postulante.nacionalidad}</p>
+        <p>RUT: {postulante.rut}</p>
+            </Card>
+            <Card className="contacto">
+            <h5 className="campo">datos de contacto</h5>
         <hr className="solid" />
-        <p>numero: </p>
-        <p>correo: </p>
-      </Card.Body>
-    </Card>
-  </div>
-  <div className="column3 ">
-    <Tabs
-      id="controlled-tab-example"
-      activeKey={key}
-      onSelect={(k) => setKey(k)}
-      className="mb-3 "
-      justify
-      variant="tabs"
-    >
-      <Tab eventKey="home" title="curriculum">
-          <TablaExperiencias></TablaExperiencias> 
-          <TablaEstudios></TablaEstudios>
-          <TablaHabilidades></TablaHabilidades>   
-      </Tab>
-      <Tab eventKey="profile" title="crear anuncio">
-      <CrearAnuncio/>
-      </Tab>
-      <Tab eventKey="anuncios" title="mis anuncios">
-        
-        <Aviso/>
-      </Tab>
-      <Tab eventKey="empleadores" title="empleadores">
-      </Tab>
-    </Tabs>
-  </div>
-</div>
-</>
-);
-}
+        <p>numero: {postulante.telefono}</p>
+        <p>correo: {correo}</p>
+
+            </Card>
+          </div>
+          <div className="col-lg-8 col-md-12">
+            <Tabs
+              id="controlled-tab-example"
+              defaultActiveKey="curriculum"
+              onSelect={(k) => setKey(k)}
+              className="mb-3"
+              justify
+              variant="tabs"
+            >
+              <Tab eventKey="curriculum" title="Curriculum">
+                <TablaExperiencias />
+                <TablaEstudios />
+                <TablaHabilidades />
+              </Tab>
+              <Tab eventKey="crear" title="Crear Anuncio">
+                <CrearAnuncio />
+              </Tab>
+              <Tab eventKey="anuncios" title="Mis Anuncios">
+                <Aviso />
+              </Tab>
+              <Tab eventKey="postulaciones" title="Mis Postulaciones">
+
+              </Tab>
+            </Tabs>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export default DatosPersonales;

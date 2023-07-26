@@ -16,14 +16,15 @@ import Landinpage from "./views/landinpage"
 import AuthProvider from "./providers/AuthProvider";
 import Documentos from "./components/documentos";
 import PerfilUsuario from "./views/miPerfil";
-
+import DetallesPublicaciones from "./views/DetallesPublicacion";
 function App() {
   return (
     <>
       <AuthProvider>
         <Routes>
         <Route path="/landinpage" element={<Landinpage />} /> 
-          <Route path="/detalles" element={<DetalleAviso />} /> 
+          <Route path="/detallesavisos" element={<DetalleAviso />} /> 
+          <Route path="/detallespublicaciones" element={<DetallesPublicaciones />} /> 
           <Route path="/bienvenida" element={<Bienvenida />} />
           <Route path="/documentos" element={<Documentos />} />
           <Route path="/perfil" element={<PerfilUsuario />} />

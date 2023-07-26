@@ -15,7 +15,6 @@ function Navbar() {
     onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
     >
     <div className='item'>      
-        <Nav.Link eventKey="link-2">Mas informacion</Nav.Link>
       <Nav.Item>
         <Signup />
       </Nav.Item>

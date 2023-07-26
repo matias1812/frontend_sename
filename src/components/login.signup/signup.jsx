@@ -22,7 +22,7 @@ function Signup() {
   const [errors, setErrors] = useState({});
   const [razonSocial, setRazonSocial] = useState("");
   const [isCheck, setIsCheck] = useState();
-  const [rutEmpresa, setRutEmpresa] = useState();
+  const [rutEmpresa, setRutEmpresa] = useState("");
 
   const navigate = useNavigate();
 
@@ -32,8 +32,9 @@ function Signup() {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    if (!setShowModal === false)
+    if (!handleCloseModal === false)
     setNombre("")
+    setRutEmpresa("")
     setEmail("");
     setRut("")
     setTelefono("")
@@ -73,13 +74,13 @@ function Signup() {
     setPassword(event.target.value);
   };
 
-  // const handleRazonSocialChange = (event) => {
-  //   setRazonSocial(event.target.value);
-  // };
+  const handleRazonSocialChange = (event) => {
+    setRazonSocial(event.target.value);
+  };
 
-  // const handleRutEmpresaChange = (event) => {
-  //   setRutEmpresa(event.target.value);
-  // };
+  const handleRutEmpresaChange = (event) => {
+    setRutEmpresa(event.target.value);
+  };
 
   const handleIsCheckChange = () => {
     if(!isCheck) {
@@ -108,12 +109,13 @@ function Signup() {
     const validationErrors = {};
 
     const credentials = {
-      // nombre: nombre,
+      nombre: nombre,
       correo: email,
-      // rut: rut,
-      // telefono: telefono,
+      rut: rut,
+      telefono: telefono,
       contrasena: password,
-      //razonSocial: {razonSocial}
+      razonSocial: razonSocial,
+      rutEmpresa: rutEmpresa
     };
 
 
@@ -150,6 +152,9 @@ function Signup() {
     if (!rut || !Rut.validate(rut)) {
       validationErrors.rut = "Debe ingresar un RUT válido";
     }
+    if (!rutEmpresa || !Rut.validate(rutEmpresa)) {
+      validationErrors.rutEmpresa = "Debe ingresar un RUT válido";
+    }
 
     if (isCheck && !razonSocial) {
       validationErrors.razonSocial = "Debe ingresar una razon social";
@@ -165,21 +170,18 @@ function Signup() {
       //const credenciales = Object.fromEntries(new FormData(credentials));
       if (isCheck == undefined) {
         const { data } = await post({ url: "/auth/signup", body: credentials  });
-        if (data) return navigate("/bienvenida");        
-      }
-      if (response.status === 201) {
-        // Restablecer el estado del formulario
+        console.log(data, "data");
+        if (data == 201) return navigate("/bienvenida");        
         setEmail("");
         setPassword("");
+        setConfirmPassword("");
+        setRazonSocial("");
+        setRutEmpresa("");
         setShowModal(false);
         setErrors({});
         isCheck(false)
-
         navigate("/bienvenida");
-
-        // Manejar registro exitoso (por ejemplo, mostrar un mensaje de éxito)
-        console.log("Registro exitoso:", response.data);
-      } else {
+      }else {
         // Manejar error de registro
         console.error("Error de registro:", response.error);
       }
@@ -295,8 +297,8 @@ function Signup() {
               <Form.Control
                 type="text"
                 placeholder="RazonSocial"
-                // value={razonSocial}
-                // onChange={handleRazonSocialChange}
+                 value={razonSocial}
+                onChange={handleRazonSocialChange}
               />
                 {errors.razonSocial && (
                   <Alert variant="danger">{errors.razonSocial}</Alert>
@@ -305,10 +307,10 @@ function Signup() {
                 <Form.Control
                   type="text"
                   placeholder="Ingresa tu RUT Empresa"
-                  // value={rutEmpresa}
-                  // onChange={handleRutEmpresaChange}
+                  value={rutEmpresa}
+                  onChange={handleRutEmpresaChange}
                 />
-                {errors.rut && <Alert variant="danger">{errors.rut}</Alert>}
+                {errors.rutEmpresa && <Alert variant="danger">{errors.rutEmpresa}</Alert>}
               </div>
               <div className="registrarse">
                 <Button variant="outline-primary" type="submit">
