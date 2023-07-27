@@ -18,19 +18,19 @@ function Aviso() {
     setCurrentPage(1);
   };
   
-  let currentAvisos 
+  const indexOfLastAviso = currentPage * avisosPerPage;
+  const indexOfFirstAviso = indexOfLastAviso - avisosPerPage;
+  const currentAvisos = avisos.slice(indexOfFirstAviso, indexOfLastAviso);
+
   const getAvisos = async () => {
     try {
       const { data } = await get({ url: "/avisos/all" });
       const filteredAvisos = selectedRegion
       ? data.filter((aviso) => aviso.ubicacion === selectedRegion)
       : data;
-      setAvisos(data);
+      setAvisos(data, filteredAvisos);
       console.log(avisos, "avisos");
       
-      const indexOfLastAviso = currentPage * avisosPerPage;
-      const indexOfFirstAviso = indexOfLastAviso - avisosPerPage;
-      currentAvisos = avisos.slice(indexOfFirstAviso, indexOfLastAviso);
       console.log(data, "data123");
       console.log(currentAvisos, "currentAvisos");
     } catch (error) {
@@ -68,14 +68,11 @@ function Aviso() {
         onFilterClick={handleFilterClick}
       />
       <div className="container"  ref={avisoContainerRef}>
-        {currentAvisos ?
-          // currentAvisos &&
-          //   currentAvisos.map((aviso, i) => (
-          //     <AvisoPostulante key={i} aviso={aviso} />
-          //   ))
-            
-          <h1>si ahi avisos</h1> : <h1>{currentAvisos}</h1>
-          
+        {
+           currentAvisos &&
+             currentAvisos.map((aviso, i) => (
+               <AvisoPostulante key={i} aviso={aviso} />
+             ))          
           }
       </div>
       <div className="paginacion">

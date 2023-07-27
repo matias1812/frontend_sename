@@ -22,7 +22,9 @@ const handleFilterClick = () => {
   setCurrentPage(1);
 };
 
-let currentPublicaciones
+const indexOfLastPublicacion = currentPage * publicacionPerPage;
+const indexOfFirstPublicacion = indexOfLastPublicacion - publicacionPerPage;
+const currentPublicaciones = publicaciones.slice(indexOfFirstPublicacion, indexOfLastPublicacion);
 
 const getPublicaciones = async () => {
   try {
@@ -33,9 +35,6 @@ const getPublicaciones = async () => {
     ? formattedPublicaciones.filter((publicacion) => publicacion.ubicacion === selectedRegion)
     : formattedPublicaciones;
     
-    const indexOfLastPublicacion = currentPage * publicacionPerPage;
-    const indexOfFirstPublicacion = indexOfLastPublicacion - publicacionPerPage;
-    currentPublicaciones = publicaciones.slice(indexOfFirstPublicacion, indexOfLastPublicacion);
        setPublicaciones(filteredPublicacion);
     } catch (error) {
       console.error("Error:", error);
