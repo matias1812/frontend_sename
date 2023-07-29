@@ -1,97 +1,112 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import { Button, Modal, Form} from "react-bootstrap";
-
+import { format } from 'date-fns';
+import useFetch from "../../hooks/useFetch";
 import "./tablas.css";
 
 export default function TablaEstudio() {
+  const { get, post } = useFetch();
   const [showModal, setShowModal] = useState(false);
-  const [tableData, setTableData] = useState([   
-     {fecha:'15-03-2004', institucion:'chanta', carrera:'recoge-papeles'}
-  ])
-
+  const [tableData, setTableData] = useState([])
+  const [fechaInicio, setFechaInicio] = useState("");
+  const [fechaTermino, setFechaTermino] = useState("");
+  const [institucion, setInstitucion] = useState("");
+  const [educacion, setEducacion] = useState("");
 
   const handleShowModal = () => {
     setShowModal(true);
   };
-
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
+    const handleFechaInicio = (event) => {
+    setFechaInicio(event.target.value);
+  };
+  const handleFechaTermino = (event) => {
+    setFechaTermino(event.target.value);
+  };
+    const handleInstitucion = (event) => {
+    setInstitucion(event.target.value);
+  };
+  const handleEducacion = (event) => {
+    setEducacion(event.target.value);
+  };
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-
-    const credentials = {
-      // nombre: nombre,
-      correo: email,
-      // rut: rut,
-      // telefono: telefono,
-      contrasena: password,
-      //razonSocial: {razonSocial}
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const data = JSON.parse(userData);
+      const postulanteId = data.user.postulanteId;
+      
+      const credentials = {
+        postulanteId: postulanteId,
+        fechaInicio: fechaInicio, 
+        fechaTermino: fechaTermino, 
+        institucion: institucion, 
+        educacion: educacion
     };
-
-    try {
-      //const credenciales = Object.fromEntries(new FormData(credentials));
-      if (isCheck == undefined) {
-        const { data } = await post({ url: "/auth/signup", body: credentials  });
-        if (data) return navigate("/bienvenida");        
-      }
-      if (response.status === 201) {
-        // Restablecer el estado del formulario
-        setEmail("");
-        setPassword("");
+        try {
+      const { data } = await post({ url: "/estudios/postulante", body: credentials  });
+      console.log(data, "EXP");
+      if (data) {
+        setEducacion("");
+        setInstitucion("");
+        setFechaInicio("");
+        setFechaTermino("");
         setShowModal(false);
-        setErrors({});
-        isCheck(false)
-
-        navigate("/bienvenida");
-
-        // Manejar registro exitoso (por ejemplo, mostrar un mensaje de éxito)
-        console.log("Registro exitoso:", response.data);
-      } else {
-        // Manejar error de registro
-        console.error("Error de registro:", response.error);
-      }
+        
+        handleAddItem();
+        console.log("Registro exitoso:", data);
+      } 
     } catch (error) {
-      // Manejar error de red u otro error
       console.error("Error:", error);
     }
+
+
   };
+  }
+    const handleAddItem = async () => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const dataId = JSON.parse(userData);
+      const postulanteId = dataId.user.postulanteId;
+      
+      const { data } = await get({ url: `/estudios/postulanteid/${postulanteId}` });
+      console.log(data, "Estudios");
+      setTableData(data)
+      console.log(tableData, "tableData");
+      setShowModal(false);
+    };
+  }
 
+useEffect(() => {
+  handleAddItem();
+}, []);
 
-
-  function handleAddItem(event){
-    event.preventDefault();
-    const form = event.target
-    const formData = new FormData(form) 
-    const formJson = Object.fromEntries(formData.entries())
-    console.log(formJson)
-    setTableData([...tableData, formJson])
-    setShowModal(false);
-}
   return (
     <div className="tabla">
       <h3>estudios</h3>
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Fecha</th>
+            <th scope="col">Fecha Inicio</th>
+            <th scope="col">Fecha Termino</th>
             <th scope="col">Institucion</th>
             <th scope="col">Carrera</th>
           </tr>
         </thead>
         <tbody className="table-group-divider">
-        {tableData.map((item,index) => (
+              {tableData &&
+                tableData.map((data,index) => (
                   <tr key={index}>
-                   <th scope="row">{index}</th>
-                   <td>{item.fecha}</td>
-                   <td>{item.institucion}</td>
-                   <td>{item.carrera}</td>
+                   <td>{format(new Date(data.fechainicio), 'dd/MM/yyyy')}</td>
+              <td>{format(new Date(data.fechatermino), 'dd/MM/yyyy')}</td>
+                   <td>{data.educacion}</td>
+                   <td>{data.institucion}</td>
+                   <td>{data.descripcion}</td>
                   </tr>
-
-                ) )}
+                ))}
         </tbody>
         <Button 
           variant="outline-primary"  
@@ -103,30 +118,43 @@ export default function TablaEstudio() {
       <Modal 
       show={showModal}
       onHide={handleCloseModal}>
-        <Form onSubmit={handleAddItem} className="">
+        <Form onSubmit={handleSubmit} className="">
           <div className="">
-            <div className="">
-              <label htmlFor="inputEmail4" className="form-label">
-                Fecha
-              </label>
-              <input type="date" name="fecha" className="form-control" id="inputEmail4" />
-            </div>
-            <div className="">
-              <label htmlFor="inputAddress" className="form-label">
-                Institucion
-              </label>
-              <input type="text" name="institucion" className="form-control" id="inputAddress" />
-            </div>
-            <div className="">
-              <label htmlFor="inputAddress2" className="form-label">
-                Carrera
-              </label>
-              <input type="text" name="carrera" className="form-control" id="inputAddress2" />
-            </div>
+                       <Form.Group controlId="formNombre">
+                <Form.Label>Fecha Inicio</Form.Label>
+                <Form.Control
+                  type="date"
+                  value={fechaInicio}
+                  onChange={handleFechaInicio}
+                />
+              </Form.Group>
+              <Form.Group controlId="formNombre">
+                <Form.Label>Fecha termino</Form.Label>
+                <Form.Control
+                  type="date"
+                  value={fechaTermino}
+                  onChange={handleFechaTermino}
+                />
+              </Form.Group>
+              <Form.Group controlId="formNombre">
+                <Form.Label>Educacion</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={educacion}
+                  onChange={handleEducacion}
+                />
+              </Form.Group>
+              <Form.Group controlId="formNombre">
+                <Form.Label>Cargo</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={institucion}
+                  onChange={handleInstitucion}
+                />
+              </Form.Group>
           </div>
           <Button onClick={() => setShowModal(false)} variant="outline-primary">
-            {" "}
-            cerrar{" "}
+            cerrar
           </Button>
           <Button type="submit" variant="outline-primary">
             Agregar

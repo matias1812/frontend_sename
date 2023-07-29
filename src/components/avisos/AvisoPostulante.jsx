@@ -7,7 +7,7 @@ function AvisoPostulante(props) {
   return (
     <>
       <div className="d-flex flex-column flex-sm-row justify-content-between">
-        <Card border="primary" className="card mb-4">
+        <Card style={{ width: '75rem'}}  border="primary" className="card mb-4">
           <Card.Header>
           <div className="flex-grow-1">
             <Card.Title className="titulo1">

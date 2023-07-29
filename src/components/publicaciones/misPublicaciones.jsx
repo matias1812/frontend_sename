@@ -22,7 +22,7 @@ function Publicacion() {
         };
         const Mispublicaciones = async () => {
           try {
-            const { data } = await get({ url: "/publicacines", body: credentials });
+            const { data } = await get({ url: `/publicacines/usuarioEmpresa/${usuarioEmpresa}}`, body: credentials });
             console.log(data, "ki");
             const formattedPublicaciones = formatPublicaciones(data);
             setPublicaciones(formattedPublicaciones);

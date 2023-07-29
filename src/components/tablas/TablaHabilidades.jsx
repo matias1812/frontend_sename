@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import { Button, Modal, Form, Alert } from "react-bootstrap";
+import useFetch from "../../hooks/useFetch";
 
 import "./tablas.css";
 
 export default function TablaHabilidades() {
+  const { get, post } = useFetch();
   const [showModal, setShowModal] = useState(false);
-  const [tableData, setTableData] = useState([ 
-    { nombre: 'marcor', habilidad:'solador'}
-])
+  const [tableData, setTableData] = useState([])
+  const [nombre, setNombre] = useState("");
+  const [tipoHabilidad, setTipoHabilidad] = useState("");
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -16,16 +18,60 @@ export default function TablaHabilidades() {
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
-    function handleAddItem(event){
-        event.preventDefault();
-        const form = event.target
-        const formData = new FormData(form) 
-        const formJson = Object.fromEntries(formData.entries())
-        console.log(formJson)
-        setTableData([...tableData, formJson])
+  const handleNombre = (event) => {
+    setNombre(event.target.value);
+  };
+  const handleTipoHabilidad = (event) => {
+    setTipoHabilidad(event.target.value);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const data = JSON.parse(userData);
+      const postulanteId = data.user.postulanteId;
+      
+      const credentials = {
+        postulanteId: postulanteId,
+        nombre: nombre,
+        tipoHabilidad: tipoHabilidad , 
+    };
+    console.log(credentials, "credentials");
+    
+    try {
+      const { data } = await post({ url: "/habilidades/postulante", body: credentials  });
+      console.log(data, "hab");
+      if (data) {
+        setNombre("");
+        setTipoHabilidad("");
         setShowModal(false);
+        
+        handleAddItem();
+        console.log("Registro exitoso:", data);
+      } 
+    } catch (error) {
+      console.error("Error:", error);
     }
+  }
+  };
+  const handleAddItem = async () => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const dataId = JSON.parse(userData);
+      const postulanteId = dataId.user.postulanteId;
+      
+      const { data } = await get({ url: `/habilidades/postulanteid/${postulanteId}` });
+      console.log(data, "hab");
+      setTableData(data)
+      console.log(tableData, "tableData");
+      setShowModal(false);
+    };
+  }
+
+useEffect(() => {
+  handleAddItem();
+}, []);
 
 
   return (
@@ -40,11 +86,12 @@ export default function TablaHabilidades() {
                 </tr>
               </thead>
               <tbody className="table-group-divider">
-                {tableData.map((item,index) => (
+              {tableData &&
+                tableData.map((data,index) => (
                   <tr key={index}>
                    <th scope="row">{index}</th>
-                   <td>{item.nombre}</td>
-                   <td>{item.habilidad}</td>
+                   <td>{data.nombre}</td>
+                   <td>{data.tipohabilidad}</td>
                   </tr>
 
                 ) )}
@@ -61,17 +108,27 @@ export default function TablaHabilidades() {
             <Modal 
             show={showModal}
             onHide={handleCloseModal}>
-        <Form onSubmit={handleAddItem}>
+        <Form onSubmit={handleSubmit}>
                 <div className="">
-                <label htmlFor="inputEmail4" className="">nombre</label>
-                <input type="text" name='nombre' className="form-control" id="inputEmail4"/>
-                </div>
-                <div className="">
-                <label htmlFor="inputCity" className="">Tipo Habilidad</label>
-                <textarea type="text" name='habilidad' className="form-control" id="inputCity"></textarea>
+                <Form.Group controlId="formNombre">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={nombre}
+                  onChange={handleNombre}
+                />
+              </Form.Group>
+              <Form.Group controlId="formNombre">
+                <Form.Label>Tipo Habilidad</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={tipoHabilidad}
+                  onChange={handleTipoHabilidad}
+                />
+              </Form.Group>
                 </div>
             <Button onClick={() => setShowModal(false)} variant="outline-primary"> cerrar </Button>
-            <Button type='onSubmit' variant="outline-primary">Agregar</Button>
+            <Button type='Submit' variant="outline-primary">Agregar</Button>
             </Form> 
 
         </Modal>

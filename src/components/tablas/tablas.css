@@ -1,6 +1,12 @@
 
-.fromtablas {
+.table td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
 }
+.table th {
+    background-color: #f2f2f2;
+  }
 
 .modal-content{
     display: flex;
@@ -9,3 +15,6 @@
     padding: 0.5rem;
 
 }
+.id-column {
+    width: 50px; /* Ajusta el valor según el ancho deseado para la columna del ID */
+  }
