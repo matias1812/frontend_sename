@@ -72,7 +72,7 @@ function CrearAnuncio() {
         try {
       const { data } = await post({ url: "/avisos", body: credentials });
       console.log(data, "avisos");
-      if (data.status === 201) {
+      if (data) {
         
         setTitulo("");
         setDescripcion("");
@@ -141,7 +141,7 @@ function CrearAnuncio() {
         <Form.Label>descripcion</Form.Label>
          <Form.Control
           type="name"
-          placeholder="Ingresa tu nombre completo"
+          placeholder="Ingresa descripcion"
           value={descripcion}
           onChange={handleDescripcion}
           cols="30" 

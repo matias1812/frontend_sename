@@ -84,7 +84,7 @@ export default function TablaExperiencia() {
       const dataId = JSON.parse(userData);
       const postulanteId = dataId.user.postulanteId;
       
-      const { data } = await get({ url: `/experiencias/postulanteid/${postulanteId}` });
+      const { data } = await get({ url: `/experiencias/postulantes/${postulanteId}` });;
       console.log(data, "EXP");
       setTableData(data)
       console.log(tableData, "tableData");

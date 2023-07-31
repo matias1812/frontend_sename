@@ -39,8 +39,8 @@ function Aviso() {
         } catch (error) {
           console.error("Error:", error);
         }
-      }
-  
+    } 
+      
   return ( 
     <div>
       <div className="container">

@@ -87,7 +87,7 @@ useEffect(() => {
   return (
     <div className="tabla">
       <h3>estudios</h3>
-      <table className="table">
+      <table style={{ borderCollapse: "collapse", width: "100%" }}>
         <thead>
           <tr>
             <th scope="col">Fecha Inicio</th>

@@ -1,43 +1,27 @@
 import React, { useEffect, useState } from "react";
 import useFetch from "../../hooks/useFetch";
-import AvisoPostulacion from "./cardPublicacion";
-
+import PublicacionPerfil from "./publicacionPerfil";
 function Publicacion() {
   const { get } = useFetch();
   const [publicacines, setPublicaciones] = useState([]);
 
-  const formatPublicaciones = (publicacion) => {
-    return publicacion;
-  };
-
   useEffect(() => {
     const userData = localStorage.getItem("user");
     if (userData) {
-      const dataid = JSON.parse(userData);
-      if (dataid && dataid.user && dataid.user.id) {
-        const usuarioId = dataid.user.id;
+      const data = JSON.parse(userData);
+      const usuariosEmpresaId = data.user.empresaId;
 
-        const credentials = {
-          usuarioId: usuarioId,
-        };
         const Mispublicaciones = async () => {
           try {
-            const { data } = await get({ url: `/publicacines/usuarioEmpresa/${usuarioEmpresa}}`, body: credentials });
+            const { data } = await get({ url: `/publicaciones/empresa/${usuariosEmpresaId}`});
             console.log(data, "ki");
-            const formattedPublicaciones = formatPublicaciones(data);
-            setPublicaciones(formattedPublicaciones);
-
-            if (data.status === 201) {
-              setErrors({});
-            } else {
-              console.error("no se pudo crear:", response.error);
-            }
+            setPublicaciones(data);
           } catch (error) {
             console.error("Error:", error);
           }
         };
         Mispublicaciones();
-      }
+      
     }
   }, []);
 
@@ -45,7 +29,7 @@ function Publicacion() {
     <div>
       <div className="container">
         {publicacines &&
-          publicacines.map((publicacion, i) => <publicacionPostulacion key={i} pu={publicacion} />)}
+          publicacines.map((publicacion, i) => <PublicacionPerfil key={i} publicacion={publicacion} />)}
       </div>
     </div>
   );

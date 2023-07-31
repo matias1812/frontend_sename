@@ -78,11 +78,11 @@ function CrearPublicacion() {
 
       try {
         const { data } = await post({
-          url: "/publicaciones",
+          url: "/publicaciones/create",
           body: credentials,
         });
         console.log(credentials, "publicaciones");
-        if (data.status === 200) {
+        if (data) {
           setTitulo("");
           setDescripcion("");
           setRangosalarial("");
@@ -90,7 +90,7 @@ function CrearPublicacion() {
           setRegion("");
           setErrors({});
         } else {
-          console.error("no se pudo crear:", response.error);
+          console.error("no se pudo crear:", data.error);
         }
       } catch (error) {
         console.error("Error:", error);

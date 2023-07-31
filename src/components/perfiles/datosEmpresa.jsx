@@ -6,9 +6,9 @@ import CrearPublicacion from "../publicaciones/crearPublicacion";
 import "./perfilEmpresas.css";
 import Publicacion from "../publicaciones/misPublicaciones";
 
-function DatosEmpresas() {
+function DatosEmpresas({empresa, correo}) {
   const [key, setKey] = useState("home");
-
+console.log(empresa, "empresa");
   return (
     <>
       <div className="container-flex">
@@ -20,8 +20,7 @@ function DatosEmpresas() {
               <h3 className="campo">sename</h3>
               <h5>datos personales</h5>
               <hr className="solid" />
-              <p>Nacionalidad: chilena</p>
-              <p>RUT: 45.345.675-8</p>
+              <p>RUT: </p>
               <p>
                 Razon Social: Servicio nacional de protección especializada a la
                 niñez y adolescencia.

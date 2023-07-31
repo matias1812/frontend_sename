@@ -14,6 +14,8 @@ function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
   const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [nacionalidad, setNacionalidad] = useState("");
   const [email, setEmail] = useState("");
   const [rut, setRut] = useState("");
   const [password, setPassword] = useState("");
@@ -34,6 +36,8 @@ function Signup() {
     setShowModal(false);
     if (!handleCloseModal === false)
     setNombre("")
+    setApellido("")
+    setNacionalidad("")
     setEmail("");
     setRut("")
     setTelefono("")
@@ -47,6 +51,15 @@ function Signup() {
     
     setNombre(event.target.value);
   };
+  const handleApellidoChange = (event) => {
+    
+    setApellido(event.target.value);
+  };
+  const handleNacionalidadChange = (event) => {
+    
+    setNacionalidad(event.target.value);
+  };
+
   
   const handleRutChange = (event) => {
     
@@ -111,6 +124,8 @@ function Signup() {
 
     let credentials = {
       nombre: nombre,
+      apellido: apellido,
+      nacionalidad: nacionalidad,
       correo: email,
       rut: rut,
       telefono: telefono,
@@ -119,10 +134,16 @@ function Signup() {
       rutEmpresa: rutEmpresa
     };
 
-
     if (!nombre) {
       validationErrors.nombre = "Debe ingresar un nombre de usuario";
     }
+    if (!apellido) {
+      validationErrors.apellido = "Debe ingresar un apellido de usuario";
+    }
+    if (!nacionalidad) {
+      validationErrors.nacionalidad = "Debe ingresar un nacinalidad de usuario";
+    }
+
 
     if (!email || !validator.isEmail(email)) {
       validationErrors.email = "Debe ingresar un email válido";
@@ -179,13 +200,15 @@ function Signup() {
         console.log(data, "empresa");
         if (data) return navigate("/bienvenida");
         setEmail("");
+        setNombre("");
+        setApellido("");
+        setNacionalidad("");
         setPassword("");
         setConfirmPassword("");
         setRazonSocial("");
         setRutEmpresa("");
         setShowModal(false);
         setErrors({});
-        isCheck(false)
         navigate("/bienvenida");
       }
     } catch (error) {
@@ -225,6 +248,30 @@ function Signup() {
                 />
                 {errors.nombre && (
                   <Alert variant="danger">{errors.nombre}</Alert>
+                )}
+              </Form.Group>
+              <Form.Group controlId="formNombre">
+                <Form.Label>apellido</Form.Label>
+                <Form.Control
+                  type="name"
+                  placeholder="Ingresa tu nombre completo"
+                  value={apellido}
+                  onChange={handleApellidoChange}
+                />
+                {errors.apellido && (
+                  <Alert variant="danger">{errors.apellido}</Alert>
+                )}
+              </Form.Group>
+              <Form.Group controlId="formNombre">
+                <Form.Label>nacinalidad</Form.Label>
+                <Form.Control
+                  type="name"
+                  placeholder="Ingresa tu nombre completo"
+                  value={nacionalidad}
+                  onChange={handleNacionalidadChange}
+                />
+                {errors.nacionalidad && (
+                  <Alert variant="danger">{errors.nacionalidad}</Alert>
                 )}
               </Form.Group>
               <Form.Group controlId="formEmail">

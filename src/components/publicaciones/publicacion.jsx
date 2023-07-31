@@ -77,7 +77,7 @@ const paginate = (pageNumber) => {
       <div className="paginacion" ref={avisoContainerRef}>
         <Paginacion
           avisosPerPage={publicacionPerPage}
-          // totalAvisos={publicaciones.length}
+          totalAvisos={publicaciones.length}
           currentPage={currentPage}
           paginate={paginate}
         />

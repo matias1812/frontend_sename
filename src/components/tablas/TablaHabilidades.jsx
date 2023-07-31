@@ -77,10 +77,9 @@ useEffect(() => {
   return (
       <div className='tabla'>
           <h3>habilidades</h3>
-          <table className="table">
+          <table style={{ borderCollapse: "collapse", width: "100%" }}>
               <thead>
                 <tr>
-                  <th scope="col">#</th>
                   <th scope="col">nombre</th>       
                   <th scope='col'>tipoHabilidad</th>
                 </tr>
@@ -89,7 +88,6 @@ useEffect(() => {
               {tableData &&
                 tableData.map((data,index) => (
                   <tr key={index}>
-                   <th scope="row">{index}</th>
                    <td>{data.nombre}</td>
                    <td>{data.tipohabilidad}</td>
                   </tr>

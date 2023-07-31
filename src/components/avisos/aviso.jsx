@@ -78,7 +78,7 @@ function Aviso() {
       <div className="paginacion">
         <Paginacion
           avisosPerPage={avisosPerPage}
-          // totalAvisos={avisos.length}
+          totalAvisos={avisos.length}
           currentPage={currentPage}
           paginate={paginate}
         />

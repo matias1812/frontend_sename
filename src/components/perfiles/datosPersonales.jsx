@@ -7,7 +7,7 @@ import TablaHabilidades from '../tablas/TablaHabilidades';
 import CrearAnuncio from "../avisos/crearAviso";
 import Aviso from "../avisos/misAvisos";
 import React, { useState } from "react";
-
+import Postulaciones from "./mispostulaciones";
 const DatosPersonales = ({ postulante, correo }) => {
   const [key, setKey] = useState("home");
 
@@ -16,7 +16,7 @@ const DatosPersonales = ({ postulante, correo }) => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-4 col-md-12">
-            <Card>
+            <Card border="primary">
             <h3 className="campo">{postulante.nombre}<br/>{postulante.apellido}</h3>
         <h5>datos personales</h5>
         <hr className="solid" />
@@ -25,7 +25,7 @@ const DatosPersonales = ({ postulante, correo }) => {
         <p>Nacionalidad: {postulante.nacionalidad}</p>
         <p>RUT: {postulante.rut}</p>
             </Card>
-            <Card className="contacto">
+            <Card border="primary" className="contacto">
             <h5 className="campo">datos de contacto</h5>
         <hr className="solid" />
         <p>numero: {postulante.telefono}</p>
@@ -54,7 +54,7 @@ const DatosPersonales = ({ postulante, correo }) => {
                 <Aviso />
               </Tab>
               <Tab eventKey="postulaciones" title="Mis Postulaciones">
-
+                <Postulaciones/>
               </Tab>
             </Tabs>
           </div>

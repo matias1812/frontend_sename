@@ -15,42 +15,35 @@ function Login() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
  
-  const credentials = {
-    //nombre: nombre,
-    correo: email,
-    //rut: rut,
-    //telefono: telefono,
-    contrasena: password,
-  };
-
+  
   const navigate = useNavigate();
-
+  
   const handleShowModal = () => {
     setShowModal(true);
   };
-
+  
   const handleCloseModal = () => {
     setShowModal(false);
     if (!setShowModal === false)
-      setEmail("");
-      setPassword("");
-      setErrors({});   
+    setEmail("");
+    setPassword("");
+    setErrors({});   
   };
   
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
-
+  
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
-
+  
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     const credentials = {
       correo: email,
       contrasena: password,
@@ -62,7 +55,6 @@ function Login() {
       validationErrors.email = "Debe ingresar un email válido";
     }
 
-    const passwordRegex= /^(?=.*[A-Z])(?=.*\d{4,}).+$/;
     if (!password || !password.length > 6) {
       validationErrors.password =
       "la contraseña debe tener minimo una mayuscula, 4 digitos y 6 caracteres " 
@@ -77,21 +69,12 @@ function Login() {
       const { data } = await post({ url: "/auth/login", body: credentials });
       if (data) return navigate("/bienvenida");
       console.log(data);
-      if (data === 201) {
-        // Restablecer el estado del formulario
         setEmail("");
         setPassword("");
         setShowModal(false);
         setErrors({});
 
-        // Navegar a la página de destino después de iniciar sesión exitosamente
-        navigate("/bienvenida");
-      } else {
-        // Manejar error de autenticación
-        console.error("Error de autenticación:", response.error);
-      }
     } catch (error) {
-      // Manejar error de red u otro error
       console.error("Error:", error);
     }
   };

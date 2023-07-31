@@ -20,7 +20,7 @@ function perfilUsuario() {
 
 const fetchPostulanteData = async () => {
       try {
-        const {data} = await get({ url: `/postulantes/usuario/${usuarioId}`});
+        const {data} = await get({ url: `/postulantes/usuarios/${usuarioId}`});
         setPostulante(data);
       } catch (error) {
         console.error("Error:", error);
