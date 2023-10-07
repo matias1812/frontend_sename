@@ -9,11 +9,11 @@ function Publicacion() {
     const userData = localStorage.getItem("user");
     if (userData) {
       const data = JSON.parse(userData);
-      const usuariosEmpresaId = data.user.empresaId;
+      const id = data.user.empresaId;
 
         const Mispublicaciones = async () => {
           try {
-            const { data } = await get({ url: `/publicaciones/empresa/${usuariosEmpresaId}`});
+            const { data } = await get({ url: `/publicaciones/empresa/${id}`});
             console.log(data, "ki");
             setPublicaciones(data);
           } catch (error) {

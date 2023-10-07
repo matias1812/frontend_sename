@@ -12,9 +12,14 @@
     background-color: grey;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+    margin-top: 1rem;
     
 }
 
 .boton{
     border-radius: 1rem;
+}
+
+.descripcion{
+    margin-top: 2rem;
 }

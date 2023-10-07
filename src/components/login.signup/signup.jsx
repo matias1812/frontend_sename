@@ -254,7 +254,7 @@ function Signup() {
                 <Form.Label>apellido</Form.Label>
                 <Form.Control
                   type="name"
-                  placeholder="Ingresa tu nombre completo"
+                  placeholder="Ingresa tu apellidos"
                   value={apellido}
                   onChange={handleApellidoChange}
                 />
@@ -266,7 +266,7 @@ function Signup() {
                 <Form.Label>nacinalidad</Form.Label>
                 <Form.Control
                   type="name"
-                  placeholder="Ingresa tu nombre completo"
+                  placeholder="Ingresa tu nacionalidad"
                   value={nacionalidad}
                   onChange={handleNacionalidadChange}
                 />

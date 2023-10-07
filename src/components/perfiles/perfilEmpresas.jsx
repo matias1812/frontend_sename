@@ -11,12 +11,13 @@ function PerfilEmpresas() {
     const userData = localStorage.getItem("user");
     if (userData) {
       const data = JSON.parse(userData);
-      const usuariosEmpresaId = data.user.empresaId;
+      const id = data.user.empresaId;
   
   const EmpresaDate = async () => {
         try {
-          const {data} = await get({ url: `/empresas/datos/${usuariosEmpresaId}`});
+          const {data} = await get({ url: `/empresas/datos/${id}`});
           setEmpresa(data);
+          console.log(empresa, "kidatos");
         } catch (error) {
           console.error("Error:", error);
         }

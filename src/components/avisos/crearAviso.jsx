@@ -151,7 +151,7 @@ function CrearAnuncio() {
         <Alert variant="danger">{errors.descripcion}</Alert>
          )}
     </Form.Group>               
-        <Button variant="outline-primary" type="submit">Crear Anuncio</Button>             
+        <Button className="btncrear" variant="outline-primary" type="submit">Crear Anuncio</Button>             
   </Form>
 </div>        
   );

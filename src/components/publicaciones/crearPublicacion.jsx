@@ -67,7 +67,7 @@ function CrearPublicacion() {
         validationErrors.region = "Debe seleccionar una región";
       }
       if (!jornada) {
-        validationErrors.jornada = "Debe seleccionar una región";
+        validationErrors.jornada = "Debe seleccionar una jornada";
       }
 
 
@@ -81,7 +81,7 @@ function CrearPublicacion() {
           url: "/publicaciones/create",
           body: credentials,
         });
-        console.log(credentials, "publicaciones");
+        console.log(data, "publicaciones");
         if (data) {
           setTitulo("");
           setDescripcion("");
@@ -90,7 +90,7 @@ function CrearPublicacion() {
           setRegion("");
           setErrors({});
         } else {
-          console.error("no se pudo crear:", data.error);
+          console.error("no se pudo crear:");
         }
       } catch (error) {
         console.error("Error:", error);
@@ -156,7 +156,7 @@ function CrearPublicacion() {
             value={jornada}
             onChange={handleJornada}
           >
-          <option value="">Selecciona una región</option>
+          <option value="">Selecciona una jornada</option>
           <option value="fulltime">
             Full time
           </option>
@@ -183,7 +183,7 @@ function CrearPublicacion() {
             <Alert variant="danger">{errors.descripcion}</Alert>
           )}
         </Form.Group>
-        <Button variant="outline-primary" type="submit">
+        <Button variant="outline-primary" type="submit" className="btncrear">
           Crear Anuncio
         </Button>
       </Form>

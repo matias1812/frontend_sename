@@ -3,60 +3,51 @@ import { useState } from "react";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import CrearPublicacion from "../publicaciones/crearPublicacion";
-import "./perfilEmpresas.css";
 import Publicacion from "../publicaciones/misPublicaciones";
-
+import MisPostulantes from "./mispostulantes";
 function DatosEmpresas({empresa, correo}) {
   const [key, setKey] = useState("home");
-console.log(empresa, "empresa");
   return (
     <>
-      <div className="container-flex">
-        <div className="column2">
-          <Card>
-            <Card.Body>
-              <div className="perfil">
-              </div>
-              <h3 className="campo">sename</h3>
-              <h5>datos personales</h5>
-              <hr className="solid" />
-              <p>RUT: </p>
-              <p>
-                Razon Social: Servicio nacional de protección especializada a la
-                niñez y adolescencia.
-              </p>
-            </Card.Body>
-          </Card>
-          <Card className="contacto">
-            <Card.Body>
-              <h5 className="campo">datos de contacto</h5>
-              <hr className="solid" />
-              <p>numero: +569 6543 2134</p>
-              <p>correo: ejemplo@gmail.com</p>
-            </Card.Body>
-          </Card>
-        </div>
-        <div className="column3 ">
-          <Tabs
-            id="controlled-tab-example"
-            activeKey={key}
-            onSelect={(k) => setKey(k)}
-            className="mb-3 "
-            justify
-            variant="tabs"
-          >
-            <Tab eventKey="home" title="postulantes">
+          <div className="container-fluid">
+        <div className="row">
+          <div className="col-lg-4 col-md-12">
+            <Card border="primary">
+            <h3 className="campo"><br/></h3>
+        <h5>Datos Empresas</h5>
+        <hr className="solid" />
+        <p>RUT: {empresa.rut}</p>
+        <p>Razon Social: {empresa.razonsocial}</p>
+        <hr className="solid" />
+            <h5 className="campo">datos de contacto</h5>
+        <p>numero: </p>
+        <p>correo: {correo}</p>
 
-            </Tab>
-            <Tab eventKey="profile" title="crear anuncio">
-                <CrearPublicacion/>
-            </Tab>
-            <Tab eventKey="contact" title="mis anuncios">
-                <Publicacion/>
-            </Tab>
-          </Tabs>
+            </Card>
+          </div>
+          <div className="col-lg-8 col-md-12">
+            <Tabs
+              id="controlled-tab-example"
+              defaultActiveKey="curriculum"
+              onSelect={(k) => setKey(k)}
+              className="mb-3"
+              justify
+              variant="tabs"
+            >
+              <Tab eventKey="postulantes" title="postulantes">
+                <MisPostulantes />
+              </Tab>
+              <Tab eventKey="crear" title="Crear Anuncio">
+                <CrearPublicacion />
+              </Tab>
+              <Tab eventKey="anuncios" title="Mis Publicaciones">
+                <Publicacion />
+              </Tab>
+            </Tabs>
+          </div>
         </div>
       </div>
+
     </>
   );
 }

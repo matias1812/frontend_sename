@@ -13,7 +13,7 @@ function Body() {
           Postula por un mejor mañana registrate <br /> y aca las empresas te
           contactan
         </h2>
-        <p>
+        <p className="descripcion">
           Somos una pagina web del sename que te proporcionara una variada
           cantidad de empleos <br className="espacio" /> en todo Chile en la
           cual solo debes dejarnos tus mejores habilidades <br /> y postular a
